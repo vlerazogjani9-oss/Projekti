@@ -1,0 +1,125 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column; 
+  }
+
+  main {
+    flex: 1;
+  }
+
+  footer {
+    background-color: #6c757d;
+    color: white;
+    padding: 5px;
+    text-align: center;
+  }
+
+
+
+.navbar {
+    margin: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.listed {
+    list-style: none; 
+    display: flex;  
+    gap: 40px;
+    padding: 0;
+    margin: 0;  
+    
+            
+}
+.listed li:hover{
+    cursor: pointer;
+    color: #6f1d1b;
+    border-bottom: 5px solid #6f1d1b;
+    
+
+}
+
+.navbar {
+  font-family: sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+#title{
+    font-size: 17px;
+    color: #6f1d1b;
+}
+
+.slogan{
+    font-family:"Elms Sans", sans-serif;;
+    font-size: 40px;
+    margin-top: 150px;
+    margin-left: 40px;
+    font-weight: 100;
+    display: flex;
+    padding: 0px;
+}
+
+.quote{
+    margin-top: 0px;
+    margin-left: 40px;
+    color: #6c757d;
+   
+}
+
+
+.buttons{
+    margin-top: 60px;
+    
+}
+
+.buttons button{
+    color: white;
+    background-color: #6f1d1b;
+    border: none;
+    border-radius: 20px;
+    width: 100px;
+    height: 30px; 
+}
+.buttons button:hover{
+    cursor: pointer;
+    color: #6f1d1b;
+    background-color: white;
+    
+    
+    
+}
+
+footer {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+   
+}
+
+.select select {
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    color: #343a40;
+    background-color: transparent;
+}
+
+.select select:hover{
+    cursor: pointer;
+    color: black;
+}
+
+.copyright{
+    color: #343a40;
+    margin-left: 50px;
+}
