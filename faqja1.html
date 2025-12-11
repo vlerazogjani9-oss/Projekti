@@ -5,20 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puna ime</title>
     <link rel="stylesheet" href="./faqja1.css">
+    <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
     
 </head>
 <body>
     <header>
-    <div class="navbar">
-        <h3 id="title">PUNA IME</h3>
-           <nav>
-             <ul class="listed">
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
-             </ul>
-           </nav>
-    </div>
+        <div class="navbar">
+            <h3 id="title">PUNA IME</h3>
+        
+            <div class="right-side">
+                <nav>
+                    <ul class="listed">
+                        <li class="active">Home</li>
+                        <li>About</li>
+                        <li>Contact</li>
+                    </ul>
+                </nav>
+        
+                <div class="buttons">
+                    <button id="loginBtn">Kyçu</button>
+                    <button id="registerBtn">Regjistrohu</button>
+                </div>
+            </div>
+        </div>
+        
+        
     </header>
 
 
@@ -30,15 +41,91 @@
         <div class="quote">
             <p>Gjej punën tënde të ëndrrave, shpejt dhe lehtë! <br>
             Shfleto oferta, <strong>krijo</strong> profilin tënd profesional dhe <strong>apliko</strong> me një klikim! </p>
-            <div class="buttons">
-            <button id="loginBtn">Kyçu</button>
-            <button id="registerBtn">Regjistrohu</button>
-            </div> 
+            
         </div>
+
+
+        <div class="search-box">
+
+            <div class="tabs">
+                <button class="tab">Kërko një punë</button>
+                <button class="tab active">Kërko një kandidat</button>
+            </div>
+        
+            <div class="filters">
+        
+                <input type="text" placeholder="p.sh. Grafik Dizajn, Zhvillues Webi">
+        
+                <select>
+                    <option>Kategoria</option>
+                    <option>Teknologji / IT</option>
+                    <option>Marketing dhe Shitje</option>
+                    <option>Financa dhe Kontabilitet</option>
+                    <option>Shëndetësi dhe Kujdes</option>
+                    <option>Edukimi dhe Trajnimi</option>
+                    <option>Shërbimet e Konsumatorit</option>
+                    <option>Logjistikë dhe Transport</option>
+                    <option>Art dhe Kreativitet</option>
+                    <option>Punë Administrative</option>
+                    
+
+                </select>
+        
+                <input type="text" placeholder="Lokacioni ku gjindeni">
+        
+                <button class="search-btn">Kërko</button>
+            </div>
+        
+        </div>
+        
     </main>
 
-    <footer>
-        <div class="select">
+
+
+
+
+
+<footer>
+
+
+<div class="elementet">
+
+    <div class="object">
+        <i class='bxr  bx-book-open'></i> 
+        <div class="fjalia1"> <h4>Kërko miliona vende pune</h4></div>
+        <div><p>Kërko miliona vende pune dhe realizo ëndrrat profesionale.</p></div>
+
+    </div>
+
+    <div class="object">
+        <i class='bxr  bx-people-diversity'></i> 
+        <div class="fjalia1"> <h4>Ekipe të mrekullueshme</h4></div>
+        <div><p>Rritu profesionalisht me ekipe të mrekullueshme.</p></div>
+
+    </div>
+
+    <div class="object">
+        <i class='bxr  bx-buildings'></i> 
+        <div class="fjalia1"> <h4>Mjedis i mirë pune</h4></div>
+        <div><p>Shijo një mjedis të mirë pune dhe atmosferë.</p></div>
+
+    </div>
+
+    <div class="object">
+        <i class='bxr  bx-biceps'></i> 
+        <div class="fjalia1"> <h4>Çdo ditë më i fortë</h4></div>
+        <div><p>Forcohu çdo ditë dhe tejkalo çdo pengesë.</p></div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+    <div class="select">
         <select name="languages" id="language-select">
             <option value="">Zgjidh Gjuhen</option>
             <option value="shqip">Shqip</option>
@@ -50,7 +137,10 @@
         © 2025 VLERÉ. Të gjitha të drejtat e rezervuara.
     </div>
 
-    </footer>
+</footer>
+
+
+
 </body>
 <script src="script.js"></script>
 </html>

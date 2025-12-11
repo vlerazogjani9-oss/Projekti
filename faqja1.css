@@ -5,6 +5,78 @@ html, body {
     flex-direction: column; 
   }
 
+
+  body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    background: url('111.jpg') no-repeat ;
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(5px);
+}
+
+
+.search-box {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px ;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tabs .tab {
+    flex: 1;
+    padding: 12px;
+    background: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+}
+
+.tabs .active {
+    background: #6f1d1b;
+    color: white;
+}
+
+
+.filters {
+    display: flex;
+    gap: 15px;
+}
+
+.filters input,
+.filters select {
+    flex: 1;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.search-btn {
+    padding: 14px 25px;
+    background: #6f1d1b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background: #6f1d1b;
+}
+
+
   main {
     flex: 1;
   }
@@ -27,27 +99,47 @@ html, body {
 }
 
 .listed {
-    list-style: none; 
-    display: flex;  
+    list-style: none;
+    display: flex;
     gap: 40px;
+    margin: 0;
     padding: 0;
-    margin: 0;  
-    
-            
+
 }
+
+.listed li.active {
+    color: #6f1d1b;     
+    font-weight: bold;  
+    border-bottom: 2px solid #6f1d1b; 
+}
+
+
+.right-side {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;  
+}
+
+
+
 .listed li:hover{
     cursor: pointer;
     color: #6f1d1b;
-    border-bottom: 5px solid #6f1d1b;
+    border-bottom: 2px solid #6f1d1b;
     
 
 }
 
 .navbar {
-  font-family: sans-serif;
-  font-weight: 300;
-  font-style: normal;
+    display: flex;
+    align-items: center;
+    padding: 10px 40px;
+    font-family: sans-serif;
+    
 }
+
+
 
 #title{
     font-size: 17px;
@@ -72,19 +164,22 @@ html, body {
 }
 
 
-.buttons{
-    margin-top: 60px;
-    
+.buttons {
+    display: flex;
+    gap: 15px;
 }
 
-.buttons button{
+.buttons button {
     color: white;
     background-color: #6f1d1b;
     border: none;
     border-radius: 20px;
     width: 100px;
-    height: 30px; 
+    height: 30px;
 }
+
+
+
 .buttons button:hover{
     cursor: pointer;
     color: #6f1d1b;
@@ -95,15 +190,57 @@ html, body {
 }
 
 footer {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    height: 100px;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    
-   
+    padding: 20px 50px;
+    background-color: #f2f2f2; 
+    box-sizing: border-box; 
+    padding: 20px;  
+}
+
+
+.elementet {
+    display: flex;              
+    justify-content: space-between; 
+    flex-wrap: wrap;            
+    gap: 10px;                  
+    margin-bottom: 20px;
+}
+
+
+.elementet .object {
+    flex: 0 1 200px;  
+    max-width: 220px;
+    min-width: 150px;
+    background-color: transparent;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+
+.elementet .object i {
+    font-size: 40px;
+    color: #6f1d1b;
+    margin-bottom: 10px;
+}
+
+
+.elementet .object h4 {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+
+.elementet .object p {
+    font-size: 14px;
+    color: #555;
+}
+
+
+.select {
+    margin-bottom: 15px;
 }
 
 .select select {
@@ -112,14 +249,11 @@ footer {
     border: none;
     color: #343a40;
     background-color: transparent;
-}
-
-.select select:hover{
     cursor: pointer;
-    color: black;
 }
 
-.copyright{
+.copyright {
     color: #343a40;
-    margin-left: 50px;
+    text-align: center;
+    font-size: 14px;
 }
