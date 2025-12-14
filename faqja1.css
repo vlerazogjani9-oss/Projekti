@@ -9,7 +9,7 @@ html, body {
   body {
     font-family: Arial, sans-serif;
     background: #f2f2f2;
-    background: url('111.jpg') no-repeat ;
+    background: url('people.jpg') no-repeat center center/cover;
     background-size: cover;
     background-position: center;
     backdrop-filter: blur(5px);
@@ -40,12 +40,25 @@ html, body {
     font-size: 16px;
     cursor: pointer;
     border-radius: 8px 8px 0 0;
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                transform 0.2s ease;
 }
 
-.tabs .active {
-    background: #6f1d1b;
-    color: white;
+.tabs .tab:hover{
+    background-color: #6f1d1b;
+    color: #fff;
 }
+
+.tab.active {
+    background-color: #6f1d1b;
+    color: white;
+    transform: scale(0.97);
+}
+
+
+
+
 
 
 .filters {
@@ -70,16 +83,136 @@ html, body {
     border-radius: 8px;
     font-size: 15px;
     cursor: pointer;
+    transition: background-color 0.3s ease, 
+    color 0.3s ease, 
+    transform 0.2s ease;
+    
 }
 
 .search-btn:hover {
-    background: #6f1d1b;
+    transform: scale(0.97);
+}
+
+.error-msg {
+    color: #6f1d1b;
+    margin-top: 10px;
+    font-size: 14px;
+    display: none;
+    transition: opacity 0.3s ease;
 }
 
 
-  main {
-    flex: 1;
-  }
+main {
+    margin: 0 auto;
+    padding: 100px 20px 50px 20px;  
+    
+}
+
+.jobs-wrap {
+    display: flex;
+    flex-direction: column;  
+    margin: 150px 0 20px 40px;   
+    gap: 40px; 
+    
+}
+
+
+.jobs-wrap h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #6f1d1b;
+    margin: 70px 0 5px 0;
+    text-align: center;
+}
+
+.jobs-wrap h3 {
+    font-size: 20px;
+    font-weight: normal;
+    color: #555;
+    margin-bottom: 100px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+
+.job-card {
+    display: flex;
+    justify-content: space-between;             
+    max-width: 900px;        
+    padding: 30px 100px;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+}
+
+.job-card .left {
+    display: flex;
+    gap: 15px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #c2c4c7;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details .job-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.details .company, 
+.details .location {
+    font-size: 14px;
+    color: #555;
+}
+
+.job-card .right .apply-btn {
+    background-color: #6f1d1b;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.job-card .right .apply-btn:hover {
+    background-color: #4b0f0c;
+}
+
+.bx-menu{
+    display: none !important;
+    color: #4b0f0c;
+    font-size: 25px;
+}
+
+/* Responsive */
+@media (max-width: 780px) {
+    .right-side{
+        display: none !important;
+    }
+
+    .bx-menu{
+        display: block !important;
+    }
+}
+
 
   footer {
     background-color: #6c757d;
@@ -104,6 +237,7 @@ html, body {
     gap: 40px;
     margin: 0;
     padding: 0;
+    color: white;
 
 }
 
@@ -142,14 +276,14 @@ html, body {
 
 
 #title{
-    font-size: 17px;
+    font-size: 20px;
     color: #6f1d1b;
 }
 
 .slogan{
     font-family:"Elms Sans", sans-serif;;
     font-size: 40px;
-    margin-top: 150px;
+    margin-top: 80px;
     margin-left: 40px;
     font-weight: 100;
     display: flex;
@@ -239,21 +373,63 @@ footer {
 }
 
 
-.select {
-    margin-bottom: 15px;
-}
-
-.select select {
-    padding: 10px 20px;
-    font-size: 15px;
-    border: none;
-    color: #343a40;
-    background-color: transparent;
-    cursor: pointer;
-}
-
 .copyright {
     color: #343a40;
     text-align: center;
     font-size: 14px;
 }
+
+.paragrafi1{
+    color: white;
+}
+
+.quote{
+    color: white;
+}
+
+
+
+/* OFFCANVAS MENU */
+.sidenav {
+    height: 92.1%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #4b0f0c;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #6c757d;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  #main {
+    transition: margin-right .5s;
+    padding: 16px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

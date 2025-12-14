@@ -6,18 +6,43 @@ document.getElementById("registerBtn").addEventListener("click", function() {
     window.location.href = "registerform.html";  
 });
 
-document.getElementById("registerLink").addEventListener("click", function(event) {
-    event.preventDefault(); 
-    window.location.href = "registerform.html";  
-});
 
 
-document.getElementById("language-select").addEventListener("change", function() {
-    const lang = this.value;
-    if(lang === "english") {
-        alert("Gjuha u ndryshua në English!"); 
-    } else if(lang === "shqip") {
-        alert("Gjuha u ndryshua në Shqip!");
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginRight = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginRight= "0";
+  }
+
+
+  function ndryshoTabin(elementi) {
+    let tabs = document.getElementsByClassName("tab");
+
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+    }
+
+    elementi.classList.add("active");
+}
+
+document.getElementById("searchBtn").addEventListener("click", function () {
+
+    let pozicioni = document.getElementById("pozicioni").value.trim();
+    let kategoria = document.getElementById("kategoria").value;
+    let lokacioni = document.getElementById("lokacioni").value.trim();
+    let mesazhi = document.getElementById("mesazhi");
+
+    if (pozicioni === "" || kategoria === "" || lokacioni === "") {
+        mesazhi.style.display = "block";
+        mesazhi.textContent = "Ju lutem plotësoni të gjitha fushat para kërkimit.";
+    } else {
+        mesazhi.style.display = "none";
+        alert("Kërkimi u krye me sukses ✅"); // test
     }
 });
 

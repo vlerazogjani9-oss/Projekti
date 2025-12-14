@@ -19,6 +19,7 @@
                         <li class="active">Home</li>
                         <li>About</li>
                         <li>Contact</li>
+                        <li>Clients</li>
                     </ul>
                 </nav>
         
@@ -26,17 +27,24 @@
                     <button id="loginBtn">Kyçu</button>
                     <button id="registerBtn">Regjistrohu</button>
                 </div>
-            </div>
+          </div>
+          <i class='bxr  bx-menu' onclick="openNav()"></i> 
         </div>
-        
-        
     </header>
 
+    
+    <!-- Offcanvas -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#">About</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
 
     <main>
       <div class="slogan-quote">
         <div class="slogan">
-          <p class="paragrafi1">PUNË QË TË PËRSHTATET,<br><span style="font-weight: bold; color:#6f1d1b ;">MUNDESI QË RRIT.</span></p>
+          <p class="paragrafi1">PUNË QË TË PËRSHTATET,<br><span style="font-weight: bold; color:white ;">MUNDESI QË RRIT.</span></p>
         </div>
 
         <div class="quote">
@@ -49,34 +57,36 @@
 
         <div class="search-box">
 
-            <div class="tabs">
-                <button class="tab">Kërko një punë</button>
-                <button class="tab active">Kërko një kandidat</button>
-            </div>
+          <div class="tabs">
+            <button class="tab active" onclick="ndryshoTabin(this)">Kërko një punë</button>
+            <button class="tab" onclick="ndryshoTabin(this)">Kërko një kandidat</button>
+        </div>
         
             <div class="filters">
         
-                <input type="text" placeholder="p.sh. Grafik Dizajn, Zhvillues Webi">
+                <input type="text" id="pozicioni" placeholder="p.sh. Grafik Dizajn, Zhvillues Webi"  >
         
-                <select>
-                    <option>Kategoria</option>
-                    <option>Teknologji / IT</option>
-                    <option>Marketing dhe Shitje</option>
-                    <option>Financa dhe Kontabilitet</option>
-                    <option>Shëndetësi dhe Kujdes</option>
-                    <option>Edukimi dhe Trajnimi</option>
-                    <option>Shërbimet e Konsumatorit</option>
-                    <option>Logjistikë dhe Transport</option>
-                    <option>Art dhe Kreativitet</option>
-                    <option>Punë Administrative</option>
+                <select id>
+                    <option value="">Kategoria</option>
+                    <option value="it">Teknologji / IT</option>
+                    <option value="marketing">Marketing dhe Shitje</option>
+                    <option value="financa">Financa dhe Kontabilitet</option>
+                    <option value="shendetesi">Shëndetësi dhe Kujdes</option>
+                    <option value="edukimi">Edukimi dhe Trajnimi</option>
+                    <option value="sherbimet">Shërbimet e Konsumatorit</option>
+                    <option value="logjistike">Logjistikë dhe Transport</option>
+                    <option value="art">Art dhe Kreativitet</option>
+                    <option value="puneAdministrative">Punë Administrative</option>
                     
 
                 </select>
         
                 <input type="text" placeholder="Lokacioni ku gjindeni">
         
-                <button class="search-btn">Kërko</button>
+                <button class="search-btn" onclick="kontrolloSearch()">Kërko</button>
             </div>
+
+            <p id="mesazhi" class="error-msg"></p>
         
         </div>
 
@@ -228,13 +238,7 @@
 
 
 
-    <div class="select">
-        <select name="languages" id="language-select">
-            <option value="">Zgjidh Gjuhen</option>
-            <option value="shqip">Shqip</option>
-            <option value="english">English</option>
-        </select>
-    </div>
+    
 
     <div class="copyright">
         © 2025 VLERÉ. Të gjitha të drejtat e rezervuara.
