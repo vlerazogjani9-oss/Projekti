@@ -47,3 +47,19 @@ document.getElementById("searchBtn").addEventListener("click", function () {
 });
 
 
+
+const aboutBox = document.querySelector(".about-wrapper");
+
+window.addEventListener("load", () => {
+    aboutBox.style.opacity = "0";
+     aboutBox.style.opacity = "translativ(40px)";
+
+     setTimeout(() => {
+        aboutBox.style.transition = "0.8s ease";
+        aboutBox.style.opacity = "1";
+        aboutBox.style.transform = "translate(0)";
+     }, 200);
+
+});
+
+
