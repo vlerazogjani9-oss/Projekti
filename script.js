@@ -48,7 +48,8 @@ document.getElementById("searchBtn").addEventListener("click", function () {
 
 
 
-const aboutBox = document.querySelector(".about-wrapper");
+document.getElementById("aboutforme").addEventListener("click", function () 
+
 
 window.addEventListener("load", () => {
     aboutBox.style.opacity = "0";
@@ -62,4 +63,25 @@ window.addEventListener("load", () => {
 
 });
 
+
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let message = document.getElementById("message").value.trim();
+    let successMsg = document.getElementById("successMsg");
+
+    if (name === "" || email === "" || message === "") {
+        successMsg.style.display = "block";
+        successMsg.style.color = "red";
+        successMsg.textContent = "Please fill in all fields before sending the message.";
+    } else {
+        successMsg.style.display = "block";
+        successMsg.style.color = "green";
+        successMsg.textContent = "Message sent successfully ✅";
+
+        document.getElementById("contactForm").reset();
+    }
+});
 
