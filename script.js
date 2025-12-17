@@ -47,3 +47,41 @@ document.getElementById("searchBtn").addEventListener("click", function () {
 });
 
 
+
+document.getElementById("aboutforme").addEventListener("click", function () 
+
+
+window.addEventListener("load", () => {
+    aboutBox.style.opacity = "0";
+     aboutBox.style.opacity = "translativ(40px)";
+
+     setTimeout(() => {
+        aboutBox.style.transition = "0.8s ease";
+        aboutBox.style.opacity = "1";
+        aboutBox.style.transform = "translate(0)";
+     }, 200);
+
+});
+
+
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let message = document.getElementById("message").value.trim();
+    let successMsg = document.getElementById("successMsg");
+
+    if (name === "" || email === "" || message === "") {
+        successMsg.style.display = "block";
+        successMsg.style.color = "red";
+        successMsg.textContent = "Please fill in all fields before sending the message.";
+    } else {
+        successMsg.style.display = "block";
+        successMsg.style.color = "green";
+        successMsg.textContent = "Message sent successfully ✅";
+
+        document.getElementById("contactForm").reset();
+    }
+});
+
