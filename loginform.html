@@ -1,50 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Kyçu</title>
     <link rel="stylesheet" href="loginform.css">
     <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
 
-<div class="wrapper">
+    <div class="navbar">
+        <h3 id="title">PUNA IME</h3>
 
-    <form action="">
+        <div class="right-side">
+            <nav>
+                <ul class="listed">
+                    <li><a href="faqja1.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
 
-
-        <h1>Kyçu</h1>
-
-        <div class="input-box">
-            <input type="text" placeholder="Emri i përdoruesit" required>
-            <i class='bx  bx-user'></i> 
+            <div class="buttons">
+                <button class="active">Kyçu</button>
+                <button onclick="location.href='registerform.html'">Regjistrohu</button>
+            </div>
         </div>
+    </div>
 
+    <main class="form-page">
+        <div class="wrapper">
+            <form>
+                <h1>Kyçu</h1>
 
-        <div class="input-box">
-            <input type="password" placeholder="Fjalëkalimi" required>
-            <i class='bx  bx-lock'></i> 
+                <div class="input-box">
+                    <input type="text" placeholder="Emri i përdoruesit" required>
+                    <i class='bx bx-user'></i>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" placeholder="Fjalëkalimi" required>
+                    <i class='bx bx-lock'></i>
+                </div>
+
+                <div class="remember-forgot">
+                    <label><input type="checkbox"> Më mbaj mend</label>
+                    <a href="#">Harrove fjalëkalimin?</a>
+                </div>
+
+                <button class="btn">Kyçu</button>
+
+                <div class="register-link">
+                    <p>Nuk keni llogari? <a href="registerform.html">Regjistrohu</a></p>
+                </div>
+            </form>
         </div>
-
-        <div class="remember-forgot">
-            <label><input type="checkbox"> Më mbaj mend</label>
-            <a href="#">Harrove fjalëkalimin?</a>
-        </div>
-
-        <button type="submit" class="btn">Kyçu</button>
-
-        <div class="register-link">
-            <p>Nuk keni një llogari ekzistuese? 
-                <a href="#" id="registerLink">Regjistrohu</a>
-            </p>
-        </div>
-
-        
-    </form>
-
-</div>
+    </main>
 
 </body>
-<script src="script.js"></script>
+
 </html>

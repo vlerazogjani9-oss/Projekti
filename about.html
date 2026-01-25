@@ -1,56 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
     <link rel="stylesheet" href="about.css">
+    <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
-   
-    <div>
-        <head>
-            <h1>About us</h1>
-            <nav>
-                <ul>
-                    <li><a href="#home-section">Home</a></li>
-                    <li><a href="#about-section">About</a></li>
-                    <li><a href="#contact-section">Contact</a></li>
-                </ul>
-            </nav>
-        </head>
+
+    <header>
+        <div class="navbar">
+            <h3 id="title">ABOUT</h3>
+
+            <div class="right-side">
+                <nav>
+                    <ul class="listed">
+                        <li><a href="faqja1.html">Home</a></li>
+                        <li><a href="about.html" class="active">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+
+                </nav>
+
+                <div class="buttons">
+                    <button id="loginBtn">Kyçu</button>
+                    <button id="registerBtn">Regjistrohu</button>
+                </div>
+            </div>
+            <i class='bxr  bx-menu' onclick="openNav()"></i>
+        </div>
+    </header>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
     </div>
 
+    <main>
+        <!-- Wrapper për Historikun -->
+        <section class="history-wrapper">
+            <div class="about-info">
+                <h2>About Us / Historiku Ynë</h2>
+                <p>
+                    Ne jemi një platformë inovative që lidh punëkërkuesit me punëdhënësit, duke e bërë gjetjen e punës
+                    më të lehtë dhe më të shpejtë. Qëllimi ynë është të ofrojmë mundësi të barabarta për të gjithë dhe
+                    të mbështesim zhvillimin profesional të përdoruesve tanë.
+                </p>
 
-    <div>
-        <main>
-            <section class="about-section" class="about-wrapper">
-                <h2>Historiku Yne</h2>
-                <p>Ky aplikacion eshte zhvilluar me qellim te permiresimit te qasjes ne mundesite per punesim, duke ofruar nje platforme te besueshme qe lidh punekerkuesit me punedhenesit. Ai mundeson informim te sakte dhe te perditesuar mbi pozitat e hapura, mbeshtet zhvillimin profesional te perdoruesve dhe lehteson procesin e aplikimit per pune ne menyre efikase dhe transparente.</p>
-            </section>
+            </div>
+        </section>
 
-            <section class="team-section">
-                <h2>Ekipi Yne</h2>
+        <!-- Wrapper për Ekipin -->
+        <section class="team-wrapper">
+            <div class="about-team">
+                <h3>Ekipi Ynë</h3>
 
-                <div class="team-member">
-                    <h3>Stina Bytyqi</h3>
-                    <img src="stina.jpg" alt="Anetare e Ekipit">
+                <div class="team-box">
+                    <div class="team-member">
+                        <img src="19222.jpg" alt="Stina Bytyqi">
+                        <span>Stina Bytyqi</span>
+                    </div>
+
+                    <div class="team-member">
+                        <img src="2431.jpg" alt="Vlera Zogjani">
+                        <span>Vlera Zogjani</span>
+                    </div>
+
+                    <div class="team-member">
+                        <img src="93435.jpg" alt="Elsa Canolli">
+                        <span>Elsa Canolli</span>
+                    </div>
+
+                    <div class="team-member">
+                        <img src="1328.jpg" alt="Vesa Kadriu">
+                        <span>Vesa Kadriu</span>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+
+    <footer>
+
+
+        <div class="elementet">
+
+            <div class="object">
+                <i class='bxr  bx-book-open'></i>
+                <div class="fjalia1">
+                    <h4>Kërko miliona vende pune</h4>
+                </div>
+                <div>
+                    <p>Kërko miliona vende pune dhe realizo ëndrrat profesionale.</p>
                 </div>
 
-                <div class="team-member">
-                    <h3>Vlera Zogjani</h3>
-                    <img src="vlera.jpg" alt="Anetare e Stafit">
+            </div>
+
+            <div class="object">
+                <i class='bxr  bx-people-diversity'></i>
+                <div class="fjalia1">
+                    <h4>Ekipe të mrekullueshme</h4>
                 </div>
-            </section>
-        </main>
+                <div>
+                    <p>Rritu profesionalisht me ekipe të mrekullueshme.</p>
+                </div>
 
-        <footer>
-            <p>&copy; 2025 Kompania juaj. Te gjitha te drejtat e rezervuara.</p>
-        </footer>
+            </div>
 
-        <script scr="script.js"></script>
-    </div>
-    
+            <div class="object">
+                <i class='bxr  bx-buildings'></i>
+                <div class="fjalia1">
+                    <h4>Mjedis i mirë pune</h4>
+                </div>
+                <div>
+                    <p>Shijo një mjedis të mirë pune dhe atmosferë.</p>
+                </div>
+
+            </div>
+
+            <div class="object">
+                <i class='bxr  bx-biceps'></i>
+                <div class="fjalia1">
+                    <h4>Çdo ditë më i fortë</h4>
+                </div>
+                <div>
+                    <p>Forcohu çdo ditë dhe tejkalo çdo pengesë.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+        <div class="copyright">
+            © 2025 VLERÉ. Të gjitha të drejtat e rezervuara.
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
 </body>
+
 </html>

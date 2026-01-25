@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,50 +9,63 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div class="navbar">
+    <h3 id="title">PUNA IME</h3>
 
-    <form action="">
+    <div class="right-side">
+        <nav>
+            <ul class="listed">
+                <li><a href="faqja1.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-
-        <h1>Regjistrohu</h1>
-
-        <div class="input-box">
-            <input type="text" placeholder="Emri" required>
-            <i class='bx  bx-user'></i> 
+        <div class="buttons">
+            <button onclick="location.href='loginform.html'">Kyçu</button>
+            <button class="active">Regjistrohu</button>
         </div>
-
-        <div class="input-box">
-            <input type="text" placeholder="Mbiemri" required>
-            <i class='bx  bx-user'></i> 
-        </div>
-
-        <div class="input-box">
-            <input type="email" placeholder="E-mail adressa" required>
-            <i class='bx  bx-envelope'></i> 
-        </div>
-
-
-        <div class="input-box">
-            <input type="password" placeholder="Fjalëkalimi" required>
-            <i class='bx  bx-lock'></i> 
-        </div>
-
-        <div class="input-box">
-            <input type="password" placeholder="Rishkruaj fjalëkalimin" required>
-            <i class='bx  bx-lock'></i> 
-        </div>
-
-        <button type="submit" class="btn">Regjistrohu</button>
-
-        <div class="register-link"><p>Keni nje llogari ekzistuese? 
-            <a href="#">Kyçu</a></p>
-        </div>
-
-        
-    </form>
-
+    </div>
 </div>
 
+<main class="form-page">
+    <div class="wrapper">
+        <form>
+            <h1>Regjistrohu</h1>
+
+            <div class="input-box">
+                <input type="text" placeholder="Emri" required>
+                <i class='bx bx-user'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="text" placeholder="Mbiemri" required>
+                <i class='bx bx-user'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="email" placeholder="Email adresa" required>
+                <i class='bx bx-envelope'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" placeholder="Fjalëkalimi" required>
+                <i class='bx bx-lock'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" placeholder="Rishkruaj fjalëkalimin" required>
+                <i class='bx bx-lock'></i>
+            </div>
+
+            <button class="btn">Regjistrohu</button>
+
+            <div class="register-link">
+                <p>Keni llogari? <a href="loginform.html">Kyçu</a></p>
+            </div>
+        </form>
+    </div>
+</main>
+
 </body>
-<script src="script.js"></script>
 </html>

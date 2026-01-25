@@ -1,87 +1,103 @@
-document.getElementById("loginBtn").addEventListener("click", function() {
-    window.location.href = "loginform.html";  
-});
-
-document.getElementById("registerBtn").addEventListener("click", function() {
-    window.location.href = "registerform.html";  
-});
-
-
-
-
+// =======================
+// SIDENAV
+// =======================
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginRight = "250px";
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginRight= "0";
-  }
-
-
-  function ndryshoTabin(elementi) {
-    let tabs = document.getElementsByClassName("tab");
-
-    for (let i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("active");
-    }
-
-    elementi.classList.add("active");
+    // opsionale: shton blur në main
+    // document.getElementById("main").style.filter = "blur(2px)";
 }
 
-document.getElementById("searchBtn").addEventListener("click", function () {
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    // opsionale: hiq blur
+    // document.getElementById("main").style.filter = "none";
+}
 
-    let pozicioni = document.getElementById("pozicioni").value.trim();
-    let kategoria = document.getElementById("kategoria").value;
-    let lokacioni = document.getElementById("lokacioni").value.trim();
-    let mesazhi = document.getElementById("mesazhi");
+// =======================
+// BUTONAT LOGIN / REGISTER / APLIKO
+// =======================
+document.getElementById("loginBtn")?.addEventListener("click", function() {
+    window.location.href = "loginform.html";
+});
 
-    if (pozicioni === "" || kategoria === "" || lokacioni === "") {
+document.getElementById("registerBtn")?.addEventListener("click", function() {
+    window.location.href = "registerform.html";
+});
+
+// Funksion për butonat "Apliko" në job cards
+const applyButtons = document.querySelectorAll(".apply-btn");
+applyButtons.forEach(btn => {
+    btn.addEventListener("click", function() {
+        window.location.href = "loginform.html";
+    });
+});
+
+// =======================
+// SEARCH BOX FUNCTION
+// =======================
+function kontrolloSearch() {
+    const pozicioni = document.getElementById("pozicioni").value.trim();
+    const kategoria = document.getElementById("kategoria")?.value;
+    const lokacioni = document.querySelector('.search-box input[placeholder*="Lokacioni"]').value.trim();
+    const mesazhi = document.getElementById("mesazhi");
+
+    let errors = [];
+
+    if (!pozicioni) errors.push("Ju lutem shkruani pozicionin e punës.");
+    if (!kategoria) errors.push("Ju lutem zgjidhni një kategori.");
+    if (!lokacioni) errors.push("Ju lutem shkruani lokacionin.");
+
+    if (errors.length > 0) {
+        mesazhi.textContent = errors.join(" ");
         mesazhi.style.display = "block";
-        mesazhi.textContent = "Ju lutem plotësoni të gjitha fushat para kërkimit.";
     } else {
+        mesazhi.textContent = "";
         mesazhi.style.display = "none";
-        alert("Kërkimi u krye me sukses ✅"); // test
+        // redirect ose alert (vetëm shembull)
+        alert("Kërkimi u krye me sukses!");
     }
+}
+
+// =======================
+// CONTACT FORM
+// =======================
+const contactForm = document.getElementById("contactForm");
+if (contactForm) {
+    contactForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        // opsionale: mund të dërgosh të dhënat me AJAX këtu
+        const successDiv = document.getElementById("success");
+        successDiv.style.display = "block";
+        // pas disa sekondash fsheh mesazhin
+        setTimeout(() => {
+            successDiv.style.display = "none";
+            contactForm.reset();
+        }, 3000);
+    });
+}
+
+// =======================
+// TABS FUNCTION (Home Page)
+// =======================
+function ndryshoTabin(el) {
+    const tabs = el.parentElement.querySelectorAll(".tab");
+    tabs.forEach(tab => tab.classList.remove("active"));
+    el.classList.add("active");
+
+    // opsionale: mund të ndryshosh përmbajtjen bazuar në tab
+    console.log("Tab aktive:", el.textContent);
+}
+
+// =======================
+// APLIKO BUTTONS - SCROLL
+// =======================
+const applyButton = document.querySelectorAll(".apply-btn");
+applyButtons.forEach(btn => {
+    btn.addEventListener("click", function() {
+        const jobsSection = document.querySelector(".jobs-wrap");
+        if (jobsSection) {
+            // Scroll tek seksioni
+            jobsSection.scrollIntoView({ behavior: "smooth" });
+        }
+    });
 });
-
-
-
-document.getElementById("aboutforme").addEventListener("click", function () 
-
-
-window.addEventListener("load", () => {
-    aboutBox.style.opacity = "0";
-     aboutBox.style.opacity = "translativ(40px)";
-
-     setTimeout(() => {
-        aboutBox.style.transition = "0.8s ease";
-        aboutBox.style.opacity = "1";
-        aboutBox.style.transform = "translate(0)";
-     }, 200);
-
-});
-
-
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    let name = document.getElementById("name").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let message = document.getElementById("message").value.trim();
-    let successMsg = document.getElementById("successMsg");
-
-    if (name === "" || email === "" || message === "") {
-        successMsg.style.display = "block";
-        successMsg.style.color = "red";
-        successMsg.textContent = "Please fill in all fields before sending the message.";
-    } else {
-        successMsg.style.display = "block";
-        successMsg.style.color = "green";
-        successMsg.textContent = "Message sent successfully ✅";
-
-        document.getElementById("contactForm").reset();
-    }
-});
-

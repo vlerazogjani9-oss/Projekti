@@ -1,12 +1,22 @@
-html, body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+html,
+body {
     height: 100%;
     margin: 0;
     display: flex;
-    flex-direction: column; 
-  }
+    flex-direction: column;
+    position: relative;
+}
 
 
-  body {
+body {
     font-family: Arial, sans-serif;
     background: #f2f2f2;
     background: url('people.jpg') no-repeat center center/cover;
@@ -16,14 +26,200 @@ html, body {
 }
 
 
+
+/* Navbar i uniform */
+.navbar {
+    margin: 20px 40px;
+    padding: 10px 40px;
+    /* uniform padding */
+    display: flex;
+    align-items: center;
+    /* centron vertikalisht elementët */
+    justify-content: space-between;
+    height: 60px;
+    /* vendosim height fikse që të jetë i njëjtë në të treja faqet */
+    box-sizing: border-box;
+}
+
+/* Lista e link-eve */
+.listed {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Link-et e navbar-it */
+.listed li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 0;
+    /* hiq padding të panevojshëm që shton height */
+    line-height: 60px;
+    /* e njëjta si height i navbar-it për centrim vertikal */
+}
+
+.listed li a:hover {
+    color: #6f1d1b;
+    border-bottom: 2px solid #6f1d1b;
+    font-weight: bold;
+
+}
+
+/* Butonat */
+.right-side {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.buttons button {
+    color: white;
+    background-color: #6f1d1b;
+    border: none;
+    border-radius: 20px;
+    width: 100px;
+    /* i njëjtë në të treja faqet */
+    height: 35px;
+    /* i njëjtë në të treja faqet */
+    padding: 0;
+    /* heq padding ekstra */
+    font-size: 14px;
+    /* uniform font-size */
+    cursor: pointer;
+    line-height: normal;
+    transition: none;
+    /* hiq transform/scale për levizje */
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+}
+
+
+.buttons button:hover {
+    cursor: pointer;
+    color: #6f1d1b;
+    background-color: white;
+
+}
+
+
+#title {
+    font-size: 20px;
+    color: #6f1d1b;
+}
+
+.listed li a.active {
+    color: #6f1d1b;
+    border-bottom: 2px solid #6f1d1b;
+    font-weight: bold;
+}
+
+.bx-menu {
+    display: none !important;
+    color: #4b0f0c;
+    font-size: 25px;
+}
+
+/* Responsive */
+@media (max-width: 780px) {
+    .right-side {
+        display: none !important;
+    }
+
+    .bx-menu {
+        display: block !important;
+    }
+}
+
+
+/* OFFCANVAS MENU */
+.sidenav {
+    height: 92.1%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #4b0f0c;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #6c757d;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-right .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+
+main {
+    margin: 0 auto;
+    padding: 100px 20px 50px 20px;
+
+}
+
+.slogan {
+    font-family: "Elms Sans", sans-serif;
+    ;
+    font-size: 40px;
+    margin-top: 80px;
+    margin-left: 40px;
+    font-weight: 100;
+    display: flex;
+    padding: 0px;
+}
+
+.quote {
+    margin-top: 0px;
+    margin-left: 40px;
+    color: #6c757d;
+
+}
+
 .search-box {
     width: 90%;
     max-width: 900px;
-    margin: 40px ;
+    margin: 40px;
     background: white;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -40,12 +236,12 @@ html, body {
     font-size: 16px;
     cursor: pointer;
     border-radius: 8px 8px 0 0;
-    transition: background-color 0.3s ease, 
-                color 0.3s ease, 
-                transform 0.2s ease;
+    transition: background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.2s ease;
 }
 
-.tabs .tab:hover{
+.tabs .tab:hover {
     background-color: #6f1d1b;
     color: #fff;
 }
@@ -55,10 +251,6 @@ html, body {
     color: white;
     transform: scale(0.97);
 }
-
-
-
-
 
 
 .filters {
@@ -80,13 +272,13 @@ html, body {
     background: #6f1d1b;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 25px;
     font-size: 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease, 
-    color 0.3s ease, 
-    transform 0.2s ease;
-    
+    transition: background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.2s ease;
+
 }
 
 .search-btn:hover {
@@ -102,18 +294,12 @@ html, body {
 }
 
 
-main {
-    margin: 0 auto;
-    padding: 100px 20px 50px 20px;  
-    
-}
-
 .jobs-wrap {
     display: flex;
-    flex-direction: column;  
-    margin: 150px 0 20px 40px;   
-    gap: 40px; 
-    
+    flex-direction: column;
+    margin: 150px 0 20px 40px;
+    gap: 40px;
+
 }
 
 
@@ -121,7 +307,7 @@ main {
     font-size: 28px;
     font-weight: bold;
     color: #6f1d1b;
-    margin: 70px 0 5px 0;
+    margin: 200px 0 5px 0;
     text-align: center;
 }
 
@@ -137,14 +323,14 @@ main {
 
 .job-card {
     display: flex;
-    justify-content: space-between;             
-    max-width: 900px;        
+    justify-content: space-between;
+    max-width: 900px;
     padding: 30px 100px;
     background-color: #f8f8f8;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
-    
+
 }
 
 .job-card:hover {
@@ -175,7 +361,7 @@ main {
     margin-bottom: 5px;
 }
 
-.details .company, 
+.details .company,
 .details .location {
     font-size: 14px;
     color: #555;
@@ -186,7 +372,7 @@ main {
     color: white;
     border: none;
     padding: 8px 12px;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
     transition: background 0.2s;
@@ -196,160 +382,36 @@ main {
     background-color: #4b0f0c;
 }
 
-.bx-menu{
-    display: none !important;
-    color: #4b0f0c;
-    font-size: 25px;
-}
 
-/* Responsive */
-@media (max-width: 780px) {
-    .right-side{
-        display: none !important;
-    }
-
-    .bx-menu{
-        display: block !important;
-    }
-}
-
-
-  footer {
-    background-color: #6c757d;
-    color: white;
-    padding: 5px;
-    text-align: center;
-  }
-
-
-
-.navbar {
-    margin: 20px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-}
-
-.listed {
-    list-style: none;
-    display: flex;
-    gap: 40px;
-    margin: 0;
-    padding: 0;
-    color: white;
-
-}
-
-.listed li.active {
-    color: #6f1d1b;     
-    font-weight: bold;  
-    border-bottom: 2px solid #6f1d1b; 
-}
-
-
-.right-side {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 40px;  
-}
-
-
-
-.listed li:hover{
-    cursor: pointer;
-    color: #6f1d1b;
-    border-bottom: 2px solid #6f1d1b;
-    
-
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-    padding: 10px 40px;
-    font-family: sans-serif;
-    
-}
-
-
-
-#title{
-    font-size: 20px;
-    color: #6f1d1b;
-}
-
-.slogan{
-    font-family:"Elms Sans", sans-serif;;
-    font-size: 40px;
-    margin-top: 80px;
-    margin-left: 40px;
-    font-weight: 100;
-    display: flex;
-    padding: 0px;
-}
-
-.quote{
-    margin-top: 0px;
-    margin-left: 40px;
-    color: #6c757d;
-   
-}
-
-
-.buttons {
-    display: flex;
-    gap: 15px;
-}
-
-.buttons button {
-    color: white;
-    background-color: #6f1d1b;
-    border: none;
-    border-radius: 20px;
-    width: 100px;
-    height: 30px;
-}
-
-
-
-.buttons button:hover{
-    cursor: pointer;
-    color: #6f1d1b;
-    background-color: white;
-    
-    
-    
-}
 
 footer {
     width: 100%;
     padding: 20px 50px;
-    background-color: #f2f2f2; 
-    box-sizing: border-box; 
-    padding: 20px;  
+    background-color: #f2f2f2;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
 
+
 .elementet {
-    display: flex;              
-    justify-content: space-between; 
-    flex-wrap: wrap;            
-    gap: 10px;                  
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 
 .elementet .object {
-    flex: 0 1 200px;  
+    flex: 0 1 200px;
     max-width: 220px;
     min-width: 150px;
     background-color: transparent;
     padding: 10px;
     text-align: center;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 
@@ -379,57 +441,10 @@ footer {
     font-size: 14px;
 }
 
-.paragrafi1{
+.paragrafi1 {
     color: white;
 }
 
-.quote{
+.quote {
     color: white;
 }
-
-
-
-/* OFFCANVAS MENU */
-.sidenav {
-    height: 92.1%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    background-color: #4b0f0c;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-  
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: white;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .sidenav a:hover {
-    color: #6c757d;
-  }
-  
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  #main {
-    transition: margin-right .5s;
-    padding: 16px;
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
