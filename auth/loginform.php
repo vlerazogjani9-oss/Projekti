@@ -1,3 +1,41 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+include('../config/database.php');
+
+echo "Database loaded!<br>";
+
+$message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $emri = trim($_POST['emri']);
+    $mbiemri = trim($_POST['mbiemri']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    $rpassword = trim($_POST['rpassword']);
+
+    if ($password !== $rpassword) {
+        $message = "Fjalëkalimet nuk përputhen!";
+    } elseif (!empty($emri) && !empty($mbiemri) && !empty($email) && !empty($password)) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO users (username, password) VALUES ('$email', '$hashed_password')";
+        if ($conn->query($sql) === TRUE) {
+            $message = "Regjistrimi u krye me sukses!";
+        } else {
+            $message = "Gabim: " . $conn->error;
+        }
+    } else {
+        $message = "Ju lutem plotësoni të gjitha fushat!";
+    }
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="sq">
 
@@ -5,7 +43,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyçu</title>
-    <link rel="stylesheet" href="loginform.css">
+    <link rel="stylesheet" href="../assets/css/loginform.css">
     <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -32,7 +70,7 @@
 
     <main class="form-page">
         <div class="wrapper">
-            <form>
+            <form method="POST" action="">
                 <h1>Kyçu</h1>
 
                 <div class="input-box">
