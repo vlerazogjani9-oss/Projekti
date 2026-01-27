@@ -13,7 +13,7 @@ body {
 }
 
 body {
-    background: url('../assets/images/resume.png') no-repeat center/cover;
+    background: url('../assets/images/resume.png') no-repeat center/cover !important; 
 }
 
 /* NAVBAR */
@@ -96,6 +96,7 @@ body {
 .wrapper h1 {
     text-align: center;
     margin-bottom: 25px;
+    
 }
 
 .input-box {
