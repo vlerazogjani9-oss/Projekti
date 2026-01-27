@@ -1,3 +1,32 @@
+<?php
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
+
+ include('../config/database.php');
+
+ if($_SERVER["REQUEST_METHOD"]== "POST"){
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $message = trim($_POST['message']);
+
+    if (empty($name) || emty($email) || emty($message)){
+        echo "Ju lutem plotësoni të gjitha fushat!";
+        exit;
+    }
+
+    $sql = "INSERT INTO contact_messages (name, email, message)"
+    VALUES ('$name', $email, $message);
+
+    if ($conn->query($sql) === TRUE){
+        echo "Meesazhi u dërgua me sukses";
+    } else {
+        echo "Gabim: " . $conn->error;    
+    }
+ }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,15 +109,15 @@
                 <div class="form">
                     <h2>Na kontakto</h2>
                     <p>Na dërgo një mesazh dhe ne do të përgjigjemi sa më shpejt të jetë e mundur.</p>
-                    <form id="contactForm">
+                    <form id="contactForm" action="contact_backed.php" method="POST">
                         <div class="form-group">
-                            <input type="text" id="name" placeholder="Emri juaj" required>
+                            <input type="text" id="name" name="name" placeholder="Emri juaj" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" placeholder="Email-i juaj" required>
+                            <input type="email" id="email"name="email" placeholder="Email-i juaj" required>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" placeholder="Mesazhi" required></textarea>
+                            <textarea id="message" name="mesagge" placeholder="Mesazhi" required></textarea>
                         </div>
                         <button type="submit">Dërgo Tani</button>
                     </form>
@@ -167,4 +196,4 @@
     <script src="script.js"></script>
 </body>
 
-</html>
+</html>330
