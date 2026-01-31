@@ -1,278 +1,237 @@
+<?php
+session_start();
+include('config/database.php');
+?>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="sq">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
-  <link rel="stylesheet" href="./faqja1.css">
-  <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/Projekti/assets/css/faqja1.css">
+  <link href="https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
 
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="navbar">
+    <h3 id="title">PUNA IME</h3>
 
+    <div class="right-side">
+      <nav>
+        <ul class="listed">
+          <li><a href="faqja1.php" class="active">Home</a></li>
+          <li><a href="about.php">About</a></li>
+          <li><a href="contact.php">Contact</a></li>
+        </ul>
+      </nav>
 
-  <header>
-    <div class="navbar">
-      <h3 id="title">PUNA IME</h3>
-
-      <div class="right-side">
-        <nav>
-          <ul class="listed">
-            <li><a href="faqja1.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </nav>
-
-        <div class="buttons">
-          <button id="loginBtn">Kyçu</button>
-          <button id="registerBtn">Regjistrohu</button>
-        </div>
+      <div class="buttons">
+        <?php if(isset($_SESSION['user'])): ?>
+          <button onclick="location.href='auth/logout.php'">Dil</button>
+        <?php else: ?>
+          <button onclick="location.href='auth/loginform.php'">Kyçu</button>
+          <button onclick="location.href='auth/registerform.php'">Regjistrohu</button>
+        <?php endif; ?>
       </div>
-      <i class='bxr  bx-menu' onclick="openNav()"></i>
     </div>
-  </header>
 
+    <i class='bxr bx-menu' onclick="openNav()"></i>
+  </div>
+</header>
 
+<!-- ================= OFFCANVAS ================= -->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="about.php">About</a>
+  <a href="contact.php">Contact</a>
+</div>
 
-  <!-- Offcanvas -->
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+<!-- ================= MAIN ================= -->
+<main>
+
+  <!-- SLOGAN -->
+  <div class="slogan-quote">
+    <div class="slogan">
+      <p class="paragrafi1">
+        PUNË QË TË PËRSHTATET,<br>
+        <span style="font-weight:bold;color:white;">MUNDËSI QË RRIT.</span>
+      </p>
+    </div>
+
+    <div class="quote">
+      <p>
+        Gjej punën tënde të ëndrrave, shpejt dhe lehtë! <br>
+        Shfleto oferta, <strong>krijo</strong> profilin tënd profesional dhe <strong>apliko</strong> me një klikim!
+      </p>
+    </div>
   </div>
 
+  <!-- SEARCH -->
+  <div class="search-box">
+    <div class="tabs">
+      <button class="tab active">Kërko një punë</button>
+      <button class="tab">Kërko një kandidat</button>
+    </div>
 
+    <div class="filters">
+      <input type="text" placeholder="Pozicioni">
+      <select>
+        <option value="">Kategoria</option>
+        <option>IT</option>
+        <option>Marketing</option>
+        <option>Financa</option>
+      </select>
+      <input type="text" placeholder="Lokacioni">
+      <button class="search-btn">Kërko</button>
+    </div>
+  </div>
 
-  <main>
-    <div class="slogan-quote">
-      <div class="slogan">
-        <p class="paragrafi1">PUNË QË TË PËRSHTATET,<br><span style="font-weight: bold; color:white ;">MUNDESI QË
-            RRIT.</span></p>
+  <!-- ================= JOBS ================= -->
+  <div class="jobs-wrap">
+
+    <h2>Punë të shtuara kohët e fundit</h2>
+    <h3>Kohës së fundit</h3>
+
+    <!-- JOB 1 -->
+    <div class="job-card">
+      <div class="left">
+        <div class="avatar">FD</div>
+        <div class="details">
+          <div class="job-title">Frontend Development</div>
+          <div class="company">BrandingX</div>
+          <div class="location">Pejton, Prishtinë</div>
+        </div>
       </div>
-
-      <div class="quote">
-        <p>Gjej punën tënde të ëndrrave, shpejt dhe lehtë! <br>
-          Shfleto oferta, <strong>krijo</strong> profilin tënd profesional dhe <strong>apliko</strong> me një klikim!
-        </p>
-
+      <div class="right">
+        <?php if(isset($_SESSION['user'])): ?>
+          <button class="apply-btn">Apliko</button>
+        <?php else: ?>
+          <button class="apply-btn"
+            onclick="location.href='/Projekti/auth/loginform.php'">
+            Kyçu për të aplikuar
+          </button>
+        <?php endif; ?>
       </div>
     </div>
 
-
-    <div class="search-box">
-
-      <div class="tabs">
-        <button class="tab active" onclick="ndryshoTabin(this)">Kërko një punë</button>
-        <button class="tab" onclick="ndryshoTabin(this)">Kërko një kandidat</button>
-      </div>
-
-      <div class="filters">
-
-        <input type="text" id="pozicioni" placeholder="p.sh. Grafik Dizajn, Zhvillues Webi">
-
-        <select id="kategoria">
-          <option value="">Kategoria</option>
-          <option value="it">Teknologji / IT</option>
-          <option value="marketing">Marketing dhe Shitje</option>
-          <option value="financa">Financa dhe Kontabilitet</option>
-          <option value="shendetesi">Shëndetësi dhe Kujdes</option>
-          <option value="edukimi">Edukimi dhe Trajnimi</option>
-          <option value="sherbimet">Shërbimet e Konsumatorit</option>
-          <option value="logjistike">Logjistikë dhe Transport</option>
-          <option value="art">Art dhe Kreativitet</option>
-          <option value="puneAdministrative">Punë Administrative</option>
-
-
-        </select>
-
-        <input type="text" placeholder="Lokacioni ku gjindeni">
-
-        <button class="search-btn" onclick="kontrolloSearch()">Kërko</button>
-      </div>
-
-      <p id="mesazhi" class="error-msg"></p>
-
-    </div>
-
-
-
-    <div class="jobs-wrap">
-
-
-
-      <h2>Punë të shtuara kohët e fundit</h2>
-      <h3>Kohës së fundit</h3>
-
-
-
-      <div class="job-card">
-        <div class="left">
-          <div class="avatar">FD</div>
-          <div class="details">
-            <div class="job-title">Frontend Development</div>
-            <div class="company">BrandingX</div>
-            <div class="location">Pejton, Prishtinë</div>
-          </div>
-        </div>
-        <div class="right">
-          <button class="apply-btn">Apliko</button>
+    <!-- JOB 2 -->
+    <div class="job-card">
+      <div class="left">
+        <div class="avatar">FS</div>
+        <div class="details">
+          <div class="job-title">Full Stack Developer</div>
+          <div class="company">Raiffeisen Tech Kosovo</div>
+          <div class="location">Dardani, Prishtinë</div>
         </div>
       </div>
-
-      <div class="job-card">
-        <div class="left">
-          <div class="avatar">FS</div>
-          <div class="details">
-            <div class="job-title">Full Stack Developer</div>
-            <div class="company">Raiffeisen Tech Kosovo</div>
-            <div class="location">Dardani, Prishtinë</div>
-          </div>
-        </div>
-        <div class="right">
-          <button class="apply-btn" onclick="redirectToLogin()">Apliko</button>
-
-        </div>
-      </div>
-
-      <div class="job-card">
-        <div class="left">
-          <div class="avatar">OP</div>
-          <div class="details">
-            <div class="job-title">Open Source Interactive Developer</div>
-            <div class="company">KEN CREATIVE</div>
-            <div class="location">Veterrnik, Prishtinë</div>
-          </div>
-        </div>
-        <div class="right">
-          <button class="apply-btn">Apliko</button>
-        </div>
-      </div>
-
-
-      <div class="job-card">
-        <div class="left">
-          <div class="avatar">MM</div>
-          <div class="details">
-            <div class="job-title">Menaxher Marketingu</div>
-            <div class="company">Creative Marketing Agency</div>
-            <div class="location">Bregu i Diellit, Prishtinë</div>
-          </div>
-        </div>
-        <div class="right">
-          <button class="apply-btn">Apliko</button>
-        </div>
-      </div>
-
-
-
-      <div class="job-card">
-        <div class="left">
-          <div class="avatar">DG</div>
-          <div class="details">
-            <div class="job-title">Dizajner Grafik</div>
-            <div class="company">Tactica</div>
-            <div class="location">Tophane, Prishtinë</div>
-          </div>
-        </div>
-        <div class="right">
-          <button class="apply-btn">Apliko</button>
-        </div>
-      </div>
-
-
-      <div class="job-card">
-        <div class="left">
-          <div class="avatar">SI</div>
-          <div class="details">
-            <div class="job-title">Specialist IT</div>
-            <div class="company">Growzillas</div>
-            <div class="location">Arbëri, Prishtinë</div>
-          </div>
-        </div>
-        <div class="right">
-          <button class="apply-btn">Apliko</button>
-        </div>
+      <div class="right">
+        <button class="apply-btn" onclick="redirectToLogin()">Apliko</button>
       </div>
     </div>
 
-
-  </main>
-
-
-
-
-
-
-  <footer>
-
-
-    <div class="elementet">
-
-      <div class="object">
-        <i class='bxr  bx-book-open'></i>
-        <div class="fjalia1">
-          <h4>Kërko miliona vende pune</h4>
+    <!-- JOB 3 -->
+    <div class="job-card">
+      <div class="left">
+        <div class="avatar">OP</div>
+        <div class="details">
+          <div class="job-title">Open Source Interactive Developer</div>
+          <div class="company">KEN CREATIVE</div>
+          <div class="location">Veterrnik, Prishtinë</div>
         </div>
-        <div>
-          <p>Kërko miliona vende pune dhe realizo ëndrrat profesionale.</p>
-        </div>
-
       </div>
-
-      <div class="object">
-        <i class='bxr  bx-people-diversity'></i>
-        <div class="fjalia1">
-          <h4>Ekipe të mrekullueshme</h4>
-        </div>
-        <div>
-          <p>Rritu profesionalisht me ekipe të mrekullueshme.</p>
-        </div>
-
+      <div class="right">
+        <button class="apply-btn">Apliko</button>
       </div>
-
-      <div class="object">
-        <i class='bxr  bx-buildings'></i>
-        <div class="fjalia1">
-          <h4>Mjedis i mirë pune</h4>
-        </div>
-        <div>
-          <p>Shijo një mjedis të mirë pune dhe atmosferë.</p>
-        </div>
-
-      </div>
-
-      <div class="object">
-        <i class='bxr  bx-biceps'></i>
-        <div class="fjalia1">
-          <h4>Çdo ditë më i fortë</h4>
-        </div>
-        <div>
-          <p>Forcohu çdo ditë dhe tejkalo çdo pengesë.</p>
-        </div>
-
-      </div>
-
     </div>
 
-
-
-
-
-
-
-
-    <div class="copyright">
-      © 2025 VLERÉ. Të gjitha të drejtat e rezervuara.
+    <!-- JOB 4 -->
+    <div class="job-card">
+      <div class="left">
+        <div class="avatar">MM</div>
+        <div class="details">
+          <div class="job-title">Menaxher Marketingu</div>
+          <div class="company">Creative Marketing Agency</div>
+          <div class="location">Bregu i Diellit, Prishtinë</div>
+        </div>
+      </div>
+      <div class="right">
+        <button class="apply-btn">Apliko</button>
+      </div>
     </div>
 
-  </footer>
+    <!-- JOB 5 -->
+    <div class="job-card">
+      <div class="left">
+        <div class="avatar">DG</div>
+        <div class="details">
+          <div class="job-title">Dizajner Grafik</div>
+          <div class="company">Tactica</div>
+          <div class="location">Tophane, Prishtinë</div>
+        </div>
+      </div>
+      <div class="right">
+        <button class="apply-btn">Apliko</button>
+      </div>
+    </div>
 
+    <!-- JOB 6 -->
+    <div class="job-card">
+      <div class="left">
+        <div class="avatar">SI</div>
+        <div class="details">
+          <div class="job-title">Specialist IT</div>
+          <div class="company">Growzillas</div>
+          <div class="location">Arbëri, Prishtinë</div>
+        </div>
+      </div>
+      <div class="right">
+        <button class="apply-btn">Apliko</button>
+      </div>
+    </div>
 
+  </div>
+</main>
 
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="elementet">
+
+    <div class="object">
+      <i class='bxr bx-book-open'></i>
+      <h4>Kërko miliona vende pune</h4>
+      <p>Kërko miliona vende pune dhe realizo ëndrrat profesionale.</p>
+    </div>
+
+    <div class="object">
+      <i class='bxr bx-people-diversity'></i>
+      <h4>Ekipe të mrekullueshme</h4>
+      <p>Rritu profesionalisht me ekipe të mrekullueshme.</p>
+    </div>
+
+    <div class="object">
+      <i class='bxr bx-buildings'></i>
+      <h4>Mjedis i mirë pune</h4>
+      <p>Shijo një mjedis të mirë pune dhe atmosferë.</p>
+    </div>
+
+    <div class="object">
+      <i class='bxr bx-biceps'></i>
+      <h4>Çdo ditë më i fortë</h4>
+      <p>Forcohu çdo ditë dhe tejkalo çdo pengesë.</p>
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2025 VLERÉ. Të gjitha të drejtat e rezervuara.
+  </div>
+</footer>
+
+<script src="./assets/js/script.js"></script>
 </body>
-<script src="script.js"></script>
-
 </html>

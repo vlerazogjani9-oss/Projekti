@@ -8,13 +8,17 @@
 html,
 body {
     min-height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 body {
-    background: url('../assets/images/resume.png') no-repeat center/cover !important; 
+    background-image: url('/Projekti/assets/images/resume.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
+
+
 
 /* NAVBAR */
 .navbar {

@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 include('../config/database.php');
 
-echo "Database loaded!<br>";
+//echo "Database loaded!<br>";
 
 $message = "";
 
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regjistrohu</title>
-    <link rel="stylesheet" href="../assets/css/loginform.css">
+    <link rel="stylesheet" href="/Projekti/assets/css/loginform.css">
     <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
