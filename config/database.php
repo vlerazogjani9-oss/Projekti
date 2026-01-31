@@ -1,12 +1,12 @@
 <?php
 $host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "projekti_db";
+$db_name = "projekti";  // emri i bazës
+$username = "root";
+$password = "";
 
-$conn = new mysqli($host, $user, $pass, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db_name;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Gabim lidhjeje me bazën: " . $e->getMessage());
 }
-?>

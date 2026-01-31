@@ -1,44 +1,79 @@
+<?php
+session_start();
+require_once __DIR__ . "/classes/Contact.php";
+require_once __DIR__ . "/classes/Validator.php";
+
+$contactSaved = false;
+$contactError = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $validator = new Validator();
+    $ok = $validator->validateContact([
+        'name' => $_POST['name'] ?? '',
+        'email' => $_POST['email'] ?? '',
+        'message' => $_POST['message'] ?? ''
+    ]);
+    if ($ok) {
+        $contact = new Contact();
+        if ($contact->save(
+            trim($_POST['name']),
+            trim($_POST['email']),
+            trim($_POST['message'])
+        )) {
+            header('Location: contact.php?saved=1');
+            exit;
+        }
+        $contactError = 'Gabim gjatë dërgimit. Provoni përsëri.';
+    } else {
+        $contactError = $validator->getFirstError();
+    }
+}
+$contactSaved = isset($_GET['saved']) && $_GET['saved'] == '1';
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakti</title>
-    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="assets/css/contact.css">
     <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
 
-    <!-- Navbar -->
     <header>
         <div class="navbar">
             <h3 id="title">CONTACT</h3>
             <div class="right-side">
                 <nav>
                     <ul class="listed">
-                        <li><a href="faqja1.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html" class="active">Contact</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About</a></li>
+                        <li><a href="products.php">Products</a></li>
+                        <li><a href="news.php">News</a></li>
+                        <li><a href="contact.php" class="active">Contact</a></li>
                     </ul>
-
                 </nav>
                 <div class="buttons">
-                    <button id="loginBtn">Kyçu</button>
-                    <button id="registerBtn">Regjistrohu</button>
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <button onclick="location.href='auth/logout.php'">Dil</button>
+                    <?php else: ?>
+                        <button id="loginBtn" onclick="location.href='auth/loginform.php'">Kyçu</button>
+                        <button id="registerBtn" onclick="location.href='auth/registerform.php'">Regjistrohu</button>
+                    <?php endif; ?>
                 </div>
             </div>
             <i class='bxr bx-menu' onclick="openNav()"></i>
         </div>
     </header>
 
-    <!-- Offcanvas Menu -->
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <a href="index.php">Home</a>
+        <a href="about.php">About</a>
+        <a href="products.php">Products</a>
+        <a href="news.php">News</a>
+        <a href="contact.php">Contact</a>
     </div>
 
     <!-- Contact Section -->
@@ -80,19 +115,24 @@
                 <div class="form">
                     <h2>Na kontakto</h2>
                     <p>Na dërgo një mesazh dhe ne do të përgjigjemi sa më shpejt të jetë e mundur.</p>
-                    <form id="contactForm">
+                    <?php if ($contactSaved): ?>
+                        <div class="success" id="success" style="display:block;">Mesazhi u dërgua me sukses!</div>
+                    <?php endif; ?>
+                    <?php if ($contactError): ?>
+                        <div class="message error"><?= htmlspecialchars($contactError) ?></div>
+                    <?php endif; ?>
+                    <form id="contactForm" method="POST" action="">
                         <div class="form-group">
-                            <input type="text" id="name" placeholder="Emri juaj" required>
+                            <input type="text" name="name" id="name" placeholder="Emri juaj" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" required minlength="2">
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" placeholder="Email-i juaj" required>
+                            <input type="email" name="email" id="email" placeholder="Email-i juaj" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" placeholder="Mesazhi" required></textarea>
+                            <textarea name="message" id="message" placeholder="Mesazhi" required minlength="10"><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
                         </div>
                         <button type="submit">Dërgo Tani</button>
                     </form>
-                    <div class="success" id="success">Mesazhi u dërgua me sukses!</div>
                 </div>
 
             </div>
@@ -164,7 +204,6 @@
     </footer>
 
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,6 @@
+.DS_Store
+uploads/*
+!uploads/.gitkeep
+!uploads/news/.gitkeep
+!uploads/products/.gitkeep
+!uploads/slider/.gitkeep

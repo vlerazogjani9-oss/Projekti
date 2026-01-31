@@ -17,12 +17,12 @@ body {
 
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
-    background: url('contact.jpg') no-repeat center center/cover;
+    background-image: url('../images/contact.jpg');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     backdrop-filter: blur(5px);
+    
 }
 
 
@@ -277,8 +277,17 @@ button[type="submit"]:hover {
 /* Success message */
 .success {
     display: none;
-    color: #6f1d1b;
+    color: #fff;
     margin-top: 15px;
+}
+
+.form .message.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
 }
 
 /* Responsive */

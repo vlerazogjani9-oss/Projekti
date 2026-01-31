@@ -1,47 +1,49 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+session_start();
+require_once __DIR__ . "/../classes/User.php";
+require_once __DIR__ . "/../classes/Validator.php";
 
-include('../config/database.php');
+$user = new User();
+$validator = new Validator();
+$message = '';
+$success = false;
 
-//echo "Database loaded!<br>";
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $password_confirm = $_POST['password_confirm'] ?? '';
 
-$message = "";
+    $ok = $validator->validateRegister([
+        'name' => $name,
+        'email' => $email,
+        'password' => $password,
+        'password_confirm' => $password_confirm
+    ]);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $emri = trim($_POST['emri']);
-    $mbiemri = trim($_POST['mbiemri']);
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
-    $rpassword = trim($_POST['rpassword']);
-
-    if ($password !== $rpassword) {
-        $message = "Fjalëkalimet nuk përputhen!";
-    } elseif (!empty($emri) && !empty($mbiemri) && !empty($email) && !empty($password)) {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        $sql = "INSERT INTO users (username, password) VALUES ('$email', '$hashed_password')";
-        if ($conn->query($sql) === TRUE) {
-            $message = "Regjistrimi u krye me sukses!";
+    if ($ok) {
+        if ($user->findByEmail($email)) {
+            $message = 'Ky email është tashmë i regjistruar.';
         } else {
-            $message = "Gabim: " . $conn->error;
+            if ($user->register($name, $email, $password)) {
+                $success = true;
+                $message = 'Regjistrimi u krye me sukses! Mund të kyçeni tani.';
+            } else {
+                $message = 'Gabim gjatë regjistrimit. Provoni përsëri.';
+            }
         }
     } else {
-        $message = "Ju lutem plotësoni të gjitha fushat!";
+        $message = $validator->getFirstError();
     }
 }
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regjistrohu</title>
-    <link rel="stylesheet" href="/Projekti/assets/css/loginform.css">
+    <link rel="stylesheet" href="../assets/css/loginform.css">
     <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -51,14 +53,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="right-side">
         <nav>
             <ul class="listed">
-                <li><a href="faqja1.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="../about.php">About</a></li>
+                <li><a href="../products.php">Products</a></li>
+                <li><a href="../news.php">News</a></li>
+                <li><a href="../contact.php">Contact</a></li>
             </ul>
         </nav>
-
         <div class="buttons">
-            <button onclick="location.href='loginform.html'">Kyçu</button>
+            <button type="button" onclick="location.href='loginform.php'">Kyçu</button>
             <button class="active">Regjistrohu</button>
         </div>
     </div>
@@ -68,39 +71,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="wrapper">
         <form method="POST" action="">
             <h1>Regjistrohu</h1>
-
-            <!-- Mesazhi i suksesit / gabimit -->
-            <?php if($message) echo "<div class='message'>$message</div>"; ?>
-
+            <?php if ($message): ?>
+                <div class="message <?= $success ? 'success' : 'error' ?>"><?= htmlspecialchars($message) ?></div>
+            <?php endif; ?>
             <div class="input-box">
-                <input type="text" name="emri" placeholder="Emri" required>
+                <input type="text" name="name" placeholder="Emri i plotë" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" required minlength="2">
                 <i class='bx bx-user'></i>
             </div>
-
             <div class="input-box">
-                <input type="text" name="mbiemri" placeholder="Mbiemri" required>
-                <i class='bx bx-user'></i>
-            </div>
-
-            <div class="input-box">
-                <input type="email" name="email" placeholder="Email adresa" required>
+                <input type="email" name="email" placeholder="Email adresa" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required>
                 <i class='bx bx-envelope'></i>
             </div>
-
             <div class="input-box">
-                <input type="password" name="password" placeholder="Fjalëkalimi" required>
+                <input type="password" name="password" placeholder="Fjalëkalimi" required minlength="6">
                 <i class='bx bx-lock'></i>
             </div>
-
             <div class="input-box">
-                <input type="password" name="rpassword" placeholder="Rishkruaj fjalëkalimin" required>
+                <input type="password" name="password_confirm" placeholder="Rishkruaj fjalëkalimin" required>
                 <i class='bx bx-lock'></i>
             </div>
-
             <button class="btn" type="submit">Regjistrohu</button>
-
             <div class="register-link">
-                <p>Keni llogari? <a href="loginform.html">Kyçu</a></p>
+                <p>Keni llogari? <a href="loginform.php">Kyçu</a></p>
             </div>
         </form>
     </div>

@@ -174,3 +174,19 @@ body {
 .remember-forgot a:hover {
     color: #fff;
 }
+
+/* Form messages */
+.wrapper .message {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.wrapper .message.error {
+    background: rgba(220, 38, 38, 0.9);
+    color: #fff;
+}
+.wrapper .message.success {
+    background: rgba(34, 197, 94, 0.9);
+    color: #fff;
+}
