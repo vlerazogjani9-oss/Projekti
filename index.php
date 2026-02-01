@@ -46,11 +46,12 @@ $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrav
     <div class="right-side">
       <nav>
         <ul class="listed">
-          <li><a href="index.php" class="active">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="products.php">Products</a></li>
-          <li><a href="news.php">News</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li><a href="index.php" class="active">Kryefaqja</a></li>
+          <li><a href="about.php">Rreth nesh</a></li>
+          <li><a href="jobs.php">Punët</a></li>
+          <li><a href="news.php">Lajme</a></li>
+          <li><a href="contact.php">Kontakt</a></li>
+          <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><li><a href="admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
         </ul>
       </nav>
       <div class="buttons">
@@ -68,11 +69,12 @@ $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrav
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="index.php">Home</a>
-  <a href="about.php">About</a>
-  <a href="products.php">Products</a>
-  <a href="news.php">News</a>
-  <a href="contact.php">Contact</a>
+  <a href="index.php">Kryefaqja</a>
+  <a href="about.php">Rreth nesh</a>
+  <a href="jobs.php">Punët</a>
+  <a href="news.php">Lajme</a>
+  <a href="contact.php">Kontakt</a>
+  <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
 </div>
 
 <main>
@@ -113,16 +115,28 @@ $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrav
 
   <div class="search-box">
     <div class="tabs">
-      <button class="tab active">Kërko një punë</button>
-      <button class="tab">Kërko një kandidat</button>
+      <button type="button" class="tab active" data-search="jobs">Kërko një punë</button>
+      <button type="button" class="tab" data-search="candidates">Kërko një kandidat</button>
     </div>
-    <div class="filters">
+    <div class="filters filters-jobs">
       <input type="text" placeholder="Pozicioni">
       <select>
         <option value="">Kategoria</option>
         <option>IT</option>
         <option>Marketing</option>
         <option>Financa</option>
+      </select>
+      <input type="text" placeholder="Lokacioni">
+      <button class="search-btn">Kërko</button>
+    </div>
+    <div class="filters filters-candidates" style="display:none;">
+      <input type="text" placeholder="Fusha / Specializimi">
+      <select>
+        <option value="">Eksperienca</option>
+        <option value="all">Të gjitha</option>
+        <option value="fillestar">Fillestar</option>
+        <option value="1-3">1–3 vjet</option>
+        <option value="3+">3+ vjet</option>
       </select>
       <input type="text" placeholder="Lokacioni">
       <button class="search-btn">Kërko</button>

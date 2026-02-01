@@ -1,29 +1,23 @@
 <?php
 session_start();
-require_once __DIR__ . "/classes/Product.php";
+require_once __DIR__ . "/classes/Job.php";
 
-$productModel = new Product();
-$products = $productModel->getAll();
+$jobModel = new Job();
+$jobs = $jobModel->getAll();
 ?>
 <!DOCTYPE html>
 <html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>Punët</title>
     <link rel="stylesheet" href="assets/css/faqja1.css">
     <link rel="stylesheet" href="assets/css/contact.css">
     <link href="https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css" rel="stylesheet">
     <style>
         .page-title { margin: 2rem auto; max-width: 1200px; padding: 0 1rem; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto 3rem; padding: 0 1rem; }
-        .product-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .product-card img { width: 100%; height: 180px; object-fit: cover; }
-        .product-card .body { padding: 1rem; }
-        .product-card h3 { margin: 0 0 0.5rem; font-size: 1.1rem; }
-        .product-card .meta { font-size: 0.85rem; color: #666; margin-top: 0.5rem; }
-        .product-card a.file-link { display: inline-block; margin-top: 0.5rem; color: #2563eb; }
-        .no-items { max-width: 600px; margin: 2rem auto; padding: 2rem; text-align: center; background: #f8fafc; border-radius: 8px; }
+        .jobs-wrap { max-width: 1200px; margin: 0 auto 3rem; padding: 0 1rem; }
+        .no-items { max-width: 600px; margin: 2rem auto; padding: 2rem; text-align: center; background: #f8fafc; border-radius: 8px; color: #64748b; }
     </style>
 </head>
 <body>
@@ -35,7 +29,7 @@ $products = $productModel->getAll();
                 <ul class="listed">
                     <li><a href="index.php">Kryefaqja</a></li>
                     <li><a href="about.php">Rreth nesh</a></li>
-                    <li><a href="jobs.php">Punët</a></li>
+                    <li><a href="jobs.php" class="active">Punët</a></li>
                     <li><a href="news.php">Lajme</a></li>
                     <li><a href="contact.php">Kontakt</a></li>
                     <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><li><a href="admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
@@ -63,32 +57,41 @@ $products = $productModel->getAll();
     <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
 </div>
 <main>
-    <h1 class="page-title">Products</h1>
-    <?php if (empty($products)): ?>
-        <div class="no-items">Nuk ka produkte të shtuara ende.</div>
-    <?php else: ?>
-        <div class="products-grid">
-            <?php foreach ($products as $p): ?>
-                <div class="product-card">
-                    <?php if (!empty($p['image'])): ?>
-                        <img src="uploads/products/<?= htmlspecialchars($p['image']) ?>" alt="<?= htmlspecialchars($p['title']) ?>">
-                    <?php elseif (!empty($p['file'])): ?>
-                        <div class="body" style="padding: 1rem;"><a class="file-link" href="uploads/products/<?= htmlspecialchars($p['file']) ?>" target="_blank">Shiko PDF</a></div>
-                    <?php else: ?>
-                        <div style="height:120px;background:#eee;display:flex;align-items:center;justify-content:center;color:#999;">Nuk ka imazh</div>
-                    <?php endif; ?>
-                    <div class="body">
-                        <h3><?= htmlspecialchars($p['title']) ?></h3>
-                        <p><?= nl2br(htmlspecialchars(mb_substr($p['description'], 0, 200))) ?><?= mb_strlen($p['description']) > 200 ? '…' : '' ?></p>
-                        <?php if (!empty($p['file']) && !empty($p['image'])): ?>
-                            <a class="file-link" href="uploads/products/<?= htmlspecialchars($p['file']) ?>" target="_blank">Shiko PDF</a>
+    <h1 class="page-title">Punët</h1>
+    <div class="jobs-wrap">
+        <?php if (empty($jobs)): ?>
+            <p class="no-items">Nuk ka punë të shtuara ende. Kontrolloni më vonë.</p>
+        <?php else: ?>
+            <?php foreach ($jobs as $job): ?>
+                <?php
+                $initials = '';
+                $words = preg_split('/\s+/', trim($job['title']), 2);
+                if (count($words) >= 2) {
+                    $initials = strtoupper(mb_substr($words[0], 0, 1) . mb_substr($words[1], 0, 1));
+                } else {
+                    $initials = strtoupper(mb_substr($job['title'], 0, 2));
+                }
+                ?>
+                <div class="job-card">
+                    <div class="left">
+                        <div class="avatar"><?= htmlspecialchars($initials) ?></div>
+                        <div class="details">
+                            <div class="job-title"><?= htmlspecialchars($job['title']) ?></div>
+                            <div class="company"><?= htmlspecialchars($job['company']) ?></div>
+                            <div class="location"><?= htmlspecialchars($job['location']) ?></div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <?php if (isset($_SESSION['user'])): ?>
+                            <button class="apply-btn">Apliko</button>
+                        <?php else: ?>
+                            <button class="apply-btn" onclick="location.href='auth/loginform.php'">Kyçu për të aplikuar</button>
                         <?php endif; ?>
-                        <div class="meta">Shtuar nga: <?= htmlspecialchars($p['created_by_name'] ?? '—') ?><?= !empty($p['updated_by_name']) ? ' | Ndryshuar nga: ' . htmlspecialchars($p['updated_by_name']) : '' ?></div>
                     </div>
                 </div>
             <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
+        <?php endif; ?>
+    </div>
 </main>
 <footer>
     <div class="elementet">

@@ -11,4 +11,53 @@ class Job extends Database {
             return [];
         }
     }
+
+    public function getById($id) {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM jobs WHERE id = ?");
+            $stmt->execute([(int) $id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row ?: null;
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
+
+    public function add($title, $company, $location, $sortOrder = 0) {
+        try {
+            $stmt = $this->conn->prepare("INSERT INTO jobs (title, company, location, sort_order) VALUES (?, ?, ?, ?)");
+            return $stmt->execute([
+                trim($title),
+                trim($company),
+                trim($location),
+                (int) $sortOrder
+            ]);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function update($id, $title, $company, $location, $sortOrder = 0) {
+        try {
+            $stmt = $this->conn->prepare("UPDATE jobs SET title = ?, company = ?, location = ?, sort_order = ? WHERE id = ?");
+            return $stmt->execute([
+                trim($title),
+                trim($company),
+                trim($location),
+                (int) $sortOrder,
+                (int) $id
+            ]);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function delete($id) {
+        try {
+            $stmt = $this->conn->prepare("DELETE FROM jobs WHERE id = ?");
+            return $stmt->execute([(int) $id]);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }

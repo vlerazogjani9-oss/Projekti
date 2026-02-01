@@ -56,3 +56,28 @@ function ndryshoTabin(el) {
     tabs.forEach(function(tab) { tab.classList.remove("active"); });
     el.classList.add("active");
 }
+
+// =======================
+// SEARCH BOX TABS (Kërko punë / Kërko kandidat)
+// =======================
+(function() {
+    var searchBox = document.querySelector(".search-box");
+    if (!searchBox) return;
+    var tabs = searchBox.querySelectorAll(".tab[data-search]");
+    var filtersJobs = searchBox.querySelector(".filters-jobs");
+    var filtersCandidates = searchBox.querySelector(".filters-candidates");
+    if (!tabs.length || !filtersJobs || !filtersCandidates) return;
+    tabs.forEach(function(tab) {
+        tab.addEventListener("click", function() {
+            ndryshoTabin(this);
+            var mode = this.getAttribute("data-search");
+            if (mode === "candidates") {
+                filtersJobs.style.display = "none";
+                filtersCandidates.style.display = "";
+            } else {
+                filtersJobs.style.display = "";
+                filtersCandidates.style.display = "none";
+            }
+        });
+    });
+})();

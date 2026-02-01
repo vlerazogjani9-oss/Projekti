@@ -47,11 +47,12 @@ $contactSaved = isset($_GET['saved']) && $_GET['saved'] == '1';
             <div class="right-side">
                 <nav>
                     <ul class="listed">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="about.php">About</a></li>
-                        <li><a href="products.php">Products</a></li>
-                        <li><a href="news.php">News</a></li>
-                        <li><a href="contact.php" class="active">Contact</a></li>
+                        <li><a href="index.php">Kryefaqja</a></li>
+                        <li><a href="about.php">Rreth nesh</a></li>
+                        <li><a href="jobs.php">Punët</a></li>
+                        <li><a href="news.php">Lajme</a></li>
+                        <li><a href="contact.php" class="active">Kontakt</a></li>
+                        <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><li><a href="admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
                     </ul>
                 </nav>
                 <div class="buttons">
@@ -69,11 +70,12 @@ $contactSaved = isset($_GET['saved']) && $_GET['saved'] == '1';
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="index.php">Home</a>
-        <a href="about.php">About</a>
-        <a href="products.php">Products</a>
-        <a href="news.php">News</a>
-        <a href="contact.php">Contact</a>
+        <a href="index.php">Kryefaqja</a>
+        <a href="about.php">Rreth nesh</a>
+        <a href="jobs.php">Punët</a>
+        <a href="news.php">Lajme</a>
+        <a href="contact.php">Kontakt</a>
+        <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
     </div>
 
     <!-- Contact Section -->
