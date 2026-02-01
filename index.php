@@ -10,6 +10,31 @@ $siteContent = new SiteContent();
 
 $slides = $sliderModel->getAllActive();
 $jobs = $jobModel->getAll();
+
+// Apply job search filters from GET (position, category, location)
+$searchPosition = trim($_GET['position'] ?? '');
+$searchCategory = trim($_GET['category'] ?? '');
+$searchLocation = trim($_GET['location'] ?? '');
+if ($searchPosition !== '' || $searchCategory !== '' || $searchLocation !== '') {
+    $jobs = array_filter($jobs, function ($job) use ($searchPosition, $searchCategory, $searchLocation) {
+        if ($searchPosition !== '' && mb_stripos($job['title'], $searchPosition) === false) {
+            return false;
+        }
+        if ($searchCategory !== '') {
+            $inTitle = mb_stripos($job['title'], $searchCategory) !== false;
+            $inCompany = mb_stripos($job['company'], $searchCategory) !== false;
+            if (!$inTitle && !$inCompany) {
+                return false;
+            }
+        }
+        if ($searchLocation !== '' && mb_stripos($job['location'], $searchLocation) === false) {
+            return false;
+        }
+        return true;
+    });
+    $jobs = array_values($jobs);
+}
+
 $sloganLine1 = $siteContent->get('home_slogan_line1') ?: 'PUNË QË TË PËRSHTATET,';
 $sloganLine2 = $siteContent->get('home_slogan_line2') ?: 'MUNDËSI QË RRIT.';
 $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrave, shpejt dhe lehtë! Shfleto oferta, krijo profilin tënd profesional dhe apliko me një klikim!';
@@ -118,17 +143,17 @@ $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrav
       <button type="button" class="tab active" data-search="jobs">Kërko një punë</button>
       <button type="button" class="tab" data-search="candidates">Kërko një kandidat</button>
     </div>
-    <div class="filters filters-jobs">
-      <input type="text" placeholder="Pozicioni">
-      <select>
+    <form class="filters filters-jobs" method="get" action="index.php#jobs-wrap">
+      <input type="text" name="position" placeholder="Pozicioni" value="<?= htmlspecialchars($searchPosition ?? '') ?>">
+      <select name="category">
         <option value="">Kategoria</option>
-        <option>IT</option>
-        <option>Marketing</option>
-        <option>Financa</option>
+        <option value="IT"<?= ($searchCategory ?? '') === 'IT' ? ' selected' : '' ?>>IT</option>
+        <option value="Marketing"<?= ($searchCategory ?? '') === 'Marketing' ? ' selected' : '' ?>>Marketing</option>
+        <option value="Financa"<?= ($searchCategory ?? '') === 'Financa' ? ' selected' : '' ?>>Financa</option>
       </select>
-      <input type="text" placeholder="Lokacioni">
-      <button class="search-btn">Kërko</button>
-    </div>
+      <input type="text" name="location" placeholder="Lokacioni" value="<?= htmlspecialchars($searchLocation ?? '') ?>">
+      <button type="submit" class="search-btn">Kërko</button>
+    </form>
     <div class="filters filters-candidates" style="display:none;">
       <input type="text" placeholder="Fusha / Specializimi">
       <select>
@@ -143,12 +168,17 @@ $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrav
     </div>
   </div>
 
-  <div class="jobs-wrap">
+  <div class="jobs-wrap" id="jobs-wrap">
     <h2>Punë të shtuara kohët e fundit</h2>
     <h3>Kohës së fundit</h3>
+    <?php if ($searchPosition !== '' || $searchCategory !== '' || $searchLocation !== ''): ?>
+      <p style="padding:0.5rem 1rem;color:#64748b;font-size:0.9rem;">
+        <?= count($jobs) ?> punë u gjetën<?= ($searchPosition !== '' || $searchCategory !== '' || $searchLocation !== '') ? ' sipas kërkimit tuaj.' : '.' ?>
+      </p>
+    <?php endif; ?>
 
     <?php if (empty($jobs)): ?>
-      <p style="padding:1rem;color:#64748b;">Nuk ka punë të shtuara ende. Kontrolloni më vonë.</p>
+      <p style="padding:1rem;color:#64748b;"><?= ($searchPosition !== '' || $searchCategory !== '' || $searchLocation !== '') ? 'Nuk u gjet asnjë punë sipas kriterave. Provoni kërkimin tjetër.' : 'Nuk ka punë të shtuara ende. Kontrolloni më vonë.' ?></p>
     <?php else: ?>
       <?php foreach ($jobs as $job): ?>
         <?php
@@ -193,6 +223,15 @@ $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrav
 </footer>
 
 <script src="assets/js/script.js"></script>
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  if (params.has('position') || params.has('category') || params.has('location')) {
+    var el = document.getElementById('jobs-wrap');
+    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  }
+})();
+</script>
 <?php if (!empty($slides) && count($slides) > 1): ?>
 <script>
 (function(){

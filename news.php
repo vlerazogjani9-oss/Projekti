@@ -15,7 +15,7 @@ $newsList = $newsModel->getAll();
     <link rel="stylesheet" href="assets/css/contact.css">
     <link href="https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css" rel="stylesheet">
     <style>
-        .page-title { margin: 2rem auto; max-width: 1200px; padding: 0 1rem; }
+        .page-title { margin: 2rem auto; max-width: 1200px; padding: 0 1rem; color: #fff;}
         .news-list { max-width: 900px; margin: 0 auto 3rem; padding: 0 1rem; }
         .news-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1.5rem; display: flex; flex-direction: column; }
         .news-card img { width: 100%; max-height: 220px; object-fit: cover; }
@@ -65,7 +65,7 @@ $newsList = $newsModel->getAll();
     <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
 </div>
 <main>
-    <h1 class="page-title">News</h1>
+    <h1 class="page-title">Lajmet më të reja</h1>
     <?php if (empty($newsList)): ?>
         <div class="no-items">Nuk ka lajme të shtuara ende.</div>
     <?php else: ?>

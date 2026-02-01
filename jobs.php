@@ -15,7 +15,7 @@ $jobs = $jobModel->getAll();
     <link rel="stylesheet" href="assets/css/contact.css">
     <link href="https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css" rel="stylesheet">
     <style>
-        .page-title { margin: 2rem auto; max-width: 1200px; padding: 0 1rem; }
+        .page-title { margin: 2rem auto; max-width: 1200px; padding: 0 1rem; color: #fff}
         .jobs-wrap { max-width: 1200px; margin: 0 auto 3rem; padding: 0 1rem; }
         .no-items { max-width: 600px; margin: 2rem auto; padding: 2rem; text-align: center; background: #f8fafc; border-radius: 8px; color: #64748b; }
     </style>
@@ -57,7 +57,7 @@ $jobs = $jobModel->getAll();
     <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
 </div>
 <main>
-    <h1 class="page-title">Punët</h1>
+    <h1 class="page-title">Punët e shtuara</h1>
     <div class="jobs-wrap">
         <?php if (empty($jobs)): ?>
             <p class="no-items">Nuk ka punë të shtuara ende. Kontrolloni më vonë.</p>
