@@ -50,15 +50,16 @@ $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrav
   <style>
     .slider-wrap { position: relative; width: 100%; max-height: 400px; overflow: hidden; background: #1e293b; }
     .slider-slides { display: flex; transition: transform 0.4s ease; }
-    .slider-slide { min-width: 100%; box-sizing: border-box; padding: 3rem 2rem; text-align: center; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 280px; }
-    .slider-slide img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.7; }
-    .slider-slide .content { position: relative; z-index: 1; }
+    .slider-slide { min-width: 100%; box-sizing: border-box; padding: 3rem 2rem; text-align: center; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 280px; position: relative; }
+    .slider-slide img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.6; filter: blur(5px); }
+    .slider-slide::after { content: ''; position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1; }
+    .slider-slide .content { position: relative; z-index: 2; }
     .slider-slide h2 { margin: 0 0 0.5rem; font-size: 1.75rem; }
     .slider-slide p { margin: 0; font-size: 1rem; opacity: 0.95; }
-    .slider-dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; z-index: 2; }
+    .slider-dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; z-index: 3; }
     .slider-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; border: none; padding: 0; }
     .slider-dot.active { background: #fff; }
-    .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 2; font-size: 1.2rem; }
+    .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 3; font-size: 1.2rem; }
     .slider-arrow.prev { left: 1rem; }
     .slider-arrow.next { right: 1rem; }
   </style>
@@ -76,7 +77,7 @@ $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrav
           <li><a href="jobs.php">Punët</a></li>
           <li><a href="news.php">Lajme</a></li>
           <li><a href="contact.php">Kontakt</a></li>
-          <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><li><a href="admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
+          <?php if (isset($_SESSION['user'])): ?><li><a href="admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
         </ul>
       </nav>
       <div class="buttons">
@@ -99,7 +100,7 @@ $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrav
   <a href="jobs.php">Punët</a>
   <a href="news.php">Lajme</a>
   <a href="contact.php">Kontakt</a>
-  <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
+  <?php if (isset($_SESSION['user'])): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
 </div>
 
 <main>

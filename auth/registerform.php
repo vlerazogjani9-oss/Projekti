@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <li><a href="../jobs.php">Punët</a></li>
                 <li><a href="../news.php">Lajme</a></li>
                 <li><a href="../contact.php">Kontakt</a></li>
-                <?php if (isset($_SESSION['user']) && (!empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?><li><a href="../admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
+                <?php if (isset($_SESSION['user'])): ?><li><a href="../admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
             </ul>
         </nav>
         <div class="buttons">

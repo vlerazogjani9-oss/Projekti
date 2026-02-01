@@ -17,11 +17,13 @@ body {
 
 
 body {
-    background-image: url('/Projekti/assets/images/resume.png');
+    background-image: 
+    linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)),
+    url('/Projekti/assets/images/resume.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(13px);
 }
 
 

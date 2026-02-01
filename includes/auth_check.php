@@ -1,6 +1,8 @@
 <?php
-session_start();
-if(!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin'){
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['user'])) {
     header("Location: ../auth/loginform.php");
     exit;
 }

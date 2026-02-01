@@ -20,6 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
         $error = 'Gabim gjatë ruajtjes.';
+        if ($jobModel->getLastError() !== null) {
+            $error .= ' (' . htmlspecialchars($jobModel->getLastError()) . ')';
+        }
     }
 }
 ?>
