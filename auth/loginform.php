@@ -4,8 +4,8 @@ require_once __DIR__ . "/../classes/User.php";
 require_once __DIR__ . "/../classes/Validator.php";
 
 $user = new User();
-$validator = new Validator();
-$loginError = '';
+$validator = new Validator(); //Validimi
+$loginError = ''; //Mesazhi i gabimit
 
 if (isset($_POST['login'])) {
     $email = trim($_POST['email'] ?? '');
@@ -13,7 +13,7 @@ if (isset($_POST['login'])) {
 
     if ($validator->validateLogin(['email' => $email, 'password' => $password])) {
         if ($user->login($email, $password)) {
-            if ($_SESSION['user']['role'] === 'admin') {
+            if ($_SESSION['user']['role'] === 'admin') { //ruan te dhenat e perdoruuesit pas loginit
                 header("Location: ../admin/dashboard.php");
             } else {
                 header("Location: ../index.php");
@@ -47,7 +47,7 @@ if (isset($_POST['login'])) {
                     <li><a href="../jobs.php">Punët</a></li>
                     <li><a href="../news.php">Lajme</a></li>
                     <li><a href="../contact.php">Kontakt</a></li>
-                    <?php if (isset($_SESSION['user'])): ?><li><a href="../admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
+                    <?php if (isset($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') === 'admin'): ?><li><a href="../admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
                 </ul>
             </nav>
             <div class="buttons">
@@ -55,6 +55,23 @@ if (isset($_POST['login'])) {
                 <button type="button" onclick="location.href='registerform.php'">Regjistrohu</button>
             </div>
         </div>
+        <i class="bx bx-menu" onclick="openNav()" aria-label="Menu"></i>
+    </div>
+    //Sidenav
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="../index.php">Kryefaqja</a>
+        <a href="../about.php">Rreth nesh</a>
+        <a href="../jobs.php">Punët</a>
+        <a href="../news.php">Lajme</a>
+        <a href="../contact.php">Kontakt</a>
+        <?php if (isset($_SESSION['user'])): ?>
+            <?php if (($_SESSION['user']['role'] ?? '') === 'admin'): ?><a href="../admin/dashboard.php">Menaxhimi</a><?php endif; ?>
+            <a href="logout.php">Dil</a>
+        <?php else: ?>
+            <a href="loginform.php">Kyçu</a>
+            <a href="registerform.php">Regjistrohu</a>
+        <?php endif; ?>
     </div>
 
     <main class="form-page">
@@ -82,6 +99,6 @@ if (isset($_POST['login'])) {
             </form>
         </div>
     </main>
-
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>

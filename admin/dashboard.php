@@ -21,36 +21,23 @@ $jobs = $jobModel->getAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Menaxhimi</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
     <link href="https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <style>
-        * { box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; margin: 0; padding: 1rem; background: #f1f5f9; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-        .header h1 { margin: 0; font-size: 1.5rem; }
-        .header a { color: #2563eb; text-decoration: none; }
-        .section { background: #fff; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow-x: auto; }
-        .section h2 { margin: 0 0 1rem; font-size: 1.1rem; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 0.5rem 0.75rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
-        th { background: #f8fafc; font-weight: 600; }
-        .btn { display: inline-block; padding: 0.35rem 0.75rem; border-radius: 6px; text-decoration: none; font-size: 0.875rem; border: none; cursor: pointer; }
-        .btn-primary { background: #2563eb; color: #fff; }
-        .btn-small { padding: 0.25rem 0.5rem; font-size: 0.8rem; }
-        .btn-danger { background: #dc2626; color: #fff; }
-        .stats { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
-        .stat { background: #fff; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .stat strong { display: block; font-size: 1.5rem; color: #2563eb; }
-        .empty { color: #64748b; padding: 1rem; }
-        .message { padding: 0.5rem; margin-bottom: 1rem; border-radius: 6px; }
-        .message.success { background: #dcfce7; color: #166534; }
-        .message.error { background: #fee2e2; color: #991b1b; }
-    </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Admin Dashboard</h1>
-        <a href="../index.php">Kthehu në faqen kryesore</a>
+    <header class="admin-header">
+        <h1>PUNA IME – Menaxhimi</h1>
+        <nav class="admin-header-nav">
+            <a href="../index.php">Kryefaqja</a>
+            <a href="../auth/logout.php">Dil</a>
+        </nav>
+    </header>
+
+    <main class="admin-main">
+    <div class="admin-page-header">
+        <h1>Dashboard</h1>
+        <a href="../index.php" class="back-link">← Kthehu në faqen kryesore</a>
     </div>
 
     <?php
@@ -187,5 +174,6 @@ $jobs = $jobModel->getAll();
             </table>
         <?php endif; ?>
     </div>
+    </main>
 </body>
 </html>

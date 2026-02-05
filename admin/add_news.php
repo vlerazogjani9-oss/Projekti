@@ -65,17 +65,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shto lajm</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 1rem; max-width: 600px; }
-        .error { color: #b91c1c; margin-bottom: 1rem; }
-        label { display: block; margin-top: 0.75rem; font-weight: 600; }
-        input[type="text"], textarea { width: 100%; padding: 0.5rem; margin-top: 0.25rem; }
-        textarea { min-height: 120px; }
-        button { margin-top: 1rem; padding: 0.5rem 1rem; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
-        a { color: #2563eb; margin-left: 1rem; }
-    </style>
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body>
+    <header class="admin-header">
+        <h1>PUNA IME – Menaxhimi</h1>
+        <nav class="admin-header-nav">
+            <a href="../index.php">Kryefaqja</a>
+            <a href="dashboard.php">Dashboard</a>
+            <a href="../auth/logout.php">Dil</a>
+        </nav>
+    </header>
+    <div class="admin-form-wrap admin-main">
     <h1>Shto lajm</h1>
     <?php if ($error): ?><p class="error"><?= htmlspecialchars($error) ?></p><?php endif; ?>
     <form method="POST" action="" enctype="multipart/form-data">
@@ -87,8 +88,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="file" name="image" accept="image/jpeg,image/png,image/gif">
         <label>Skedar PDF (opsional, max 5MB)</label>
         <input type="file" name="file" accept="application/pdf">
-        <button type="submit">Ruaj</button>
-        <a href="dashboard.php">Anulo</a>
+        <div class="form-actions">
+            <button type="submit">Ruaj</button>
+            <a href="dashboard.php">Anulo</a>
+        </div>
     </form>
+    </div>
 </body>
 </html>

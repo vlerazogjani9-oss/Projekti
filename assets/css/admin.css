@@ -1,0 +1,533 @@
+/* Admin / Menaxhimi - matches site design (faqja1, contact) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Design tokens - same as main site */
+:root {
+    --admin-primary: #6f1d1b;
+    --admin-primary-dark: #4b0f0c;
+    --admin-text: #343a40;
+    --admin-text-muted: #555;
+    --admin-text-light: #6c757d;
+    --admin-bg: #f8fafc;
+    --admin-card: #ffffff;
+    --admin-border: #e2e8f0;
+    --admin-success: #166534;
+    --admin-success-bg: #dcfce7;
+    --admin-danger: #991b1b;
+    --admin-danger-bg: #fee2e2;
+    --admin-radius: 12px;
+    --admin-radius-sm: 8px;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--admin-bg);
+    color: var(--admin-text);
+}
+
+/* Background - subtle blurred layer matching site vibe */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(111, 29, 27, 0.04), rgba(111, 29, 27, 0.06)),
+        linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e8eef4 100%);
+    z-index: -1;
+}
+
+/* Admin header - matches site navbar style */
+.admin-header {
+    background: var(--admin-primary);
+    color: white;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.admin-header h1 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.admin-header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.admin-header-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.admin-header-nav a:hover {
+    background: white;
+    color: var(--admin-primary);
+}
+
+/* Main content wrapper */
+.admin-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+}
+
+/* Page header (dashboard title row) */
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.admin-page-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--admin-primary);
+}
+
+.admin-page-header .back-link {
+    color: var(--admin-primary);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 2px solid var(--admin-primary);
+    transition: background 0.2s, color 0.2s;
+}
+
+.admin-page-header .back-link:hover {
+    background: var(--admin-primary);
+    color: white;
+}
+
+/* Stats cards */
+.stats {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.stat {
+    background: var(--admin-card);
+    padding: 1.25rem 1.75rem;
+    border-radius: var(--admin-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    flex: 1;
+    min-width: 140px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(111, 29, 27, 0.12);
+}
+
+.stat strong {
+    display: block;
+    font-size: 1.75rem;
+    color: var(--admin-primary);
+    margin-top: 0.25rem;
+}
+
+/* Sections (table cards) */
+.section {
+    background: var(--admin-card);
+    border-radius: var(--admin-radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+}
+
+.section h2 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    color: var(--admin-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+th {
+    background: rgba(111, 29, 27, 0.06);
+    font-weight: 600;
+    color: var(--admin-primary-dark);
+    font-size: 0.9rem;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background: rgba(111, 29, 27, 0.02);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.btn-primary {
+    background: var(--admin-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--admin-primary-dark);
+    color: white;
+}
+
+.btn-small {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.8rem;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+    color: white;
+}
+
+.btn + .btn {
+    margin-left: 0.5rem;
+}
+
+/* Messages */
+.message {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: var(--admin-radius-sm);
+    font-weight: 500;
+}
+
+.message.success {
+    background: var(--admin-success-bg);
+    color: var(--admin-success);
+}
+
+.message.error {
+    background: var(--admin-danger-bg);
+    color: var(--admin-danger);
+}
+
+/* Empty state */
+.empty {
+    color: var(--admin-text-light);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+/* ========== Form pages (add_*, edit_*) ========== */
+.admin-form-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.admin-form-wrap h1 {
+    margin-bottom: 1.5rem;
+    color: var(--admin-primary);
+    font-size: 1.5rem;
+}
+
+.admin-form-wrap .error {
+    background: var(--admin-danger-bg);
+    color: var(--admin-danger);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: var(--admin-radius-sm);
+}
+
+.admin-form-wrap form {
+    background: var(--admin-card);
+    padding: 2rem;
+    border-radius: var(--admin-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.admin-form-wrap label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+    color: var(--admin-text);
+}
+
+.admin-form-wrap label:first-of-type {
+    margin-top: 0;
+}
+
+.admin-form-wrap input[type="text"],
+.admin-form-wrap input[type="number"],
+.admin-form-wrap input[type="file"],
+.admin-form-wrap textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius-sm);
+    font-size: 1rem;
+    margin-top: 0.25rem;
+}
+
+.admin-form-wrap input:focus,
+.admin-form-wrap textarea:focus {
+    outline: none;
+    border-color: var(--admin-primary);
+    box-shadow: 0 0 0 3px rgba(111, 29, 27, 0.15);
+}
+
+.admin-form-wrap textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.admin-form-wrap .form-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.admin-form-wrap button[type="submit"] {
+    padding: 12px 24px;
+    background: var(--admin-primary);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.admin-form-wrap button[type="submit"]:hover {
+    background: var(--admin-primary-dark);
+    transform: scale(0.98);
+}
+
+.admin-form-wrap .form-actions a {
+    color: var(--admin-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.admin-form-wrap .form-actions a:hover {
+    text-decoration: underline;
+}
+
+.admin-form-wrap p {
+    color: var(--admin-text-muted);
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-header {
+        padding: 14px 20px;
+    }
+
+    .admin-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .admin-main {
+        padding: 1.5rem 1rem;
+    }
+
+    .section {
+        padding: 1rem;
+    }
+
+    th, td {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .stat {
+        min-width: 100%;
+    }
+}
+
+/* ========== RESPONSIVE DESIGN - iPhone 14 Pro Max (428px) and smaller ========== */
+@media (max-width: 480px) {
+    .admin-header {
+        padding: 12px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .admin-header h1 {
+        font-size: 1.1rem;
+    }
+
+    .admin-header-nav {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .admin-header-nav a {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    .admin-main {
+        padding: 1rem 10px;
+    }
+
+    .admin-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-page-header h1 {
+        font-size: 1.3rem;
+    }
+
+    .admin-page-header .back-link {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    /* Stats */
+    .stats {
+        flex-direction: column;
+    }
+
+    .stat {
+        width: 100%;
+        padding: 1rem 1.25rem;
+    }
+
+    .stat strong {
+        font-size: 1.5rem;
+    }
+
+    /* Sections */
+    .section {
+        padding: 0.75rem;
+    }
+
+    .section h2 {
+        font-size: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    /* Tables */
+    table {
+        font-size: 0.8rem;
+    }
+
+    th, td {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .btn-small {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    /* Form pages */
+    .admin-form-wrap {
+        padding: 1.5rem 10px;
+    }
+
+    .admin-form-wrap h1 {
+        font-size: 1.3rem;
+    }
+
+    .admin-form-wrap form {
+        padding: 1.5rem;
+    }
+
+    .admin-form-wrap label {
+        font-size: 0.9rem;
+    }
+
+    .admin-form-wrap input[type="text"],
+    .admin-form-wrap input[type="number"],
+    .admin-form-wrap input[type="file"],
+    .admin-form-wrap textarea {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .admin-form-wrap button[type="submit"] {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    /* Messages */
+    .message {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}

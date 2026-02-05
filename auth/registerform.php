@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <li><a href="../jobs.php">Punët</a></li>
                 <li><a href="../news.php">Lajme</a></li>
                 <li><a href="../contact.php">Kontakt</a></li>
-                <?php if (isset($_SESSION['user'])): ?><li><a href="../admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
+                <?php if (isset($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') === 'admin'): ?><li><a href="../admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
             </ul>
         </nav>
         <div class="buttons">
@@ -66,6 +66,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <button class="active">Regjistrohu</button>
         </div>
     </div>
+    <i class="bx bx-menu" onclick="openNav()" aria-label="Menu"></i>
+</div>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="../index.php">Kryefaqja</a>
+    <a href="../about.php">Rreth nesh</a>
+    <a href="../jobs.php">Punët</a>
+    <a href="../news.php">Lajme</a>
+    <a href="../contact.php">Kontakt</a>
+    <?php if (isset($_SESSION['user'])): ?>
+        <?php if (($_SESSION['user']['role'] ?? '') === 'admin'): ?><a href="../admin/dashboard.php">Menaxhimi</a><?php endif; ?>
+        <a href="logout.php">Dil</a>
+    <?php else: ?>
+        <a href="loginform.php">Kyçu</a>
+        <a href="registerform.php">Regjistrohu</a>
+    <?php endif; ?>
 </div>
 
 <main class="form-page">
@@ -98,6 +114,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
     </div>
 </main>
-
+<script src="../assets/js/script.js"></script>
 </body>
 </html>

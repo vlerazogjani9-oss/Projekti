@@ -1,6 +1,6 @@
 -- Projekti database schema
 -- Run against database: projekti
-
+-- Ketu kemi perdor query-t per te krijuar bazen e te dhenave te projektit
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 

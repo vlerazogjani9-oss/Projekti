@@ -3,11 +3,11 @@ session_start();
 require_once __DIR__ . '/../includes/auth_check.php';
 require_once __DIR__ . '/../classes/Job.php';
 
-$jobModel = new Job();
-$error = '';
+$jobModel = new Job(); //krijimi i objektit nga klasa Job dhe thrret metoda si add() per te shtuar nje pune te re 
+$error = ''; // variabel per ruajtjen e mesazhit te gabimit nese ka
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = trim($_POST['title'] ?? '');
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { //kontrollon nese forma eshte derguar me metod POST, dhe nese po, merr vlerat e fusheve te formes, i pastron ato
+    $title = trim($_POST['title'] ?? ''); // $title merr vleren e fushes title, trim heq hapesirat e panevojshme nga fillimi dhe fundi i stringut, dhe ?? '' siguron qe nese fusha nuk eshte e vendosur, $title do te jete nje string bosh
     $company = trim($_POST['company'] ?? '');
     $location = trim($_POST['location'] ?? '');
     $sortOrder = (int)($_POST['sort_order'] ?? 0);
@@ -32,16 +32,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shto punë</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 1rem; max-width: 600px; }
-        .error { color: #b91c1c; margin-bottom: 1rem; }
-        label { display: block; margin-top: 0.75rem; font-weight: 600; }
-        input[type="text"], input[type="number"] { width: 100%; padding: 0.5rem; margin-top: 0.25rem; }
-        button { margin-top: 1rem; padding: 0.5rem 1rem; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
-        a { color: #2563eb; margin-left: 1rem; }
-    </style>
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body>
+    <header class="admin-header">
+        <h1>PUNA IME – Menaxhimi</h1>
+        <nav class="admin-header-nav">
+            <a href="../index.php">Kryefaqja</a>
+            <a href="dashboard.php">Dashboard</a>
+            <a href="../auth/logout.php">Dil</a>
+        </nav>
+    </header>
+    <div class="admin-form-wrap admin-main">
     <h1>Shto punë</h1>
     <?php if ($error): ?><p class="error"><?= htmlspecialchars($error) ?></p><?php endif; ?>
     <form method="POST" action="">
@@ -53,8 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="text" name="location" value="<?= htmlspecialchars($_POST['location'] ?? '') ?>" required>
         <label>Rendi (numër)</label>
         <input type="number" name="sort_order" value="<?= htmlspecialchars($_POST['sort_order'] ?? '0') ?>" min="0">
-        <button type="submit">Ruaj</button>
-        <a href="dashboard.php">Anulo</a>
+        <div class="form-actions">
+            <button type="submit">Ruaj</button>
+            <a href="dashboard.php">Anulo</a>
+        </div>
     </form>
+    </div>
 </body>
 </html>

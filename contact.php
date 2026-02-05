@@ -52,7 +52,7 @@ $contactSaved = isset($_GET['saved']) && $_GET['saved'] == '1';
                         <li><a href="jobs.php">Punët</a></li>
                         <li><a href="news.php">Lajme</a></li>
                         <li><a href="contact.php" class="active">Kontakt</a></li>
-                        <?php if (isset($_SESSION['user'])): ?><li><a href="admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
+                        <?php if (isset($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') === 'admin'): ?><li><a href="admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
                     </ul>
                 </nav>
                 <div class="buttons">
@@ -75,7 +75,13 @@ $contactSaved = isset($_GET['saved']) && $_GET['saved'] == '1';
         <a href="jobs.php">Punët</a>
         <a href="news.php">Lajme</a>
         <a href="contact.php">Kontakt</a>
-        <?php if (isset($_SESSION['user'])): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
+        <?php if (isset($_SESSION['user'])): ?>
+            <?php if (($_SESSION['user']['role'] ?? '') === 'admin'): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
+            <a href="auth/logout.php">Dil</a>
+        <?php else: ?>
+            <a href="auth/loginform.php">Kyçu</a>
+            <a href="auth/registerform.php">Regjistrohu</a>
+        <?php endif; ?>
     </div>
 
     <!-- Contact Section -->
@@ -142,54 +148,27 @@ $contactSaved = isset($_GET['saved']) && $_GET['saved'] == '1';
     </main>
 
     <footer>
-
-
         <div class="elementet">
-
             <div class="object">
-                <i class='bxr  bx-book-open'></i>
-                <div class="fjalia1">
-                    <h4>Kërko miliona vende pune</h4>
-                </div>
-                <div>
-                    <p>Kërko miliona vende pune dhe realizo ëndrrat profesionale.</p>
-                </div>
-
+                <i class='bxr bx-book-open'></i>
+                <div class="fjalia1"><h4>Kërko miliona vende pune</h4></div>
+                <div><p>Kërko miliona vende pune dhe realizo ëndrrat profesionale.</p></div>
             </div>
-
             <div class="object">
-                <i class='bxr  bx-people-diversity'></i>
-                <div class="fjalia1">
-                    <h4>Ekipe të mrekullueshme</h4>
-                </div>
-                <div>
-                    <p>Rritu profesionalisht me ekipe të mrekullueshme.</p>
-                </div>
-
+                <i class='bxr bx-people-diversity'></i>
+                <div class="fjalia1"><h4>Ekipe të mrekullueshme</h4></div>
+                <div><p>Rritu profesionalisht me ekipe të mrekullueshme.</p></div>
             </div>
-
             <div class="object">
-                <i class='bxr  bx-buildings'></i>
-                <div class="fjalia1">
-                    <h4>Mjedis i mirë pune</h4>
-                </div>
-                <div>
-                    <p>Shijo një mjedis të mirë pune dhe atmosferë.</p>
-                </div>
-
+                <i class='bxr bx-buildings'></i>
+                <div class="fjalia1"><h4>Mjedis i mirë pune</h4></div>
+                <div><p>Shijo një mjedis të mirë pune dhe atmosferë.</p></div>
             </div>
-
             <div class="object">
-                <i class='bxr  bx-biceps'></i>
-                <div class="fjalia1">
-                    <h4>Çdo ditë më i fortë</h4>
-                </div>
-                <div>
-                    <p>Forcohu çdo ditë dhe tejkalo çdo pengesë.</p>
-                </div>
-
+                <i class='bxr bx-biceps'></i>
+                <div class="fjalia1"><h4>Çdo ditë më i fortë</h4></div>
+                <div><p>Forcohu çdo ditë dhe tejkalo çdo pengesë.</p></div>
             </div>
-
         </div>
 
 
@@ -199,9 +178,7 @@ $contactSaved = isset($_GET['saved']) && $_GET['saved'] == '1';
 
 
 
-        <div class="copyright">
-            © 2025 VLERÉ. Të gjitha të drejtat e rezervuara.
-        </div>
+        <div class="copyright">© 2025 VLERÉ. Të gjitha të drejtat e rezervuara.</div>
 
     </footer>
 

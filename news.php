@@ -11,7 +11,6 @@ $newsList = $newsModel->getAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News</title>
-    <link rel="stylesheet" href="assets/css/faqja1.css">
     <link rel="stylesheet" href="assets/css/contact.css">
     <link href="https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css" rel="stylesheet">
     <style>
@@ -26,6 +25,15 @@ $newsList = $newsModel->getAll();
         .news-card a.file-link { display: inline-block; margin-top: 0.5rem; color: #2563eb; }
         .no-items { max-width: 600px; margin: 2rem auto; padding: 2rem; text-align: center; background: #f8fafc; border-radius: 8px; }
         @media (min-width: 600px) { .news-card { flex-direction: row; } .news-card img { width: 280px; max-height: none; min-height: 180px; } }
+        @media (max-width: 480px) {
+            .page-title { margin: 1rem auto; padding: 0 15px; font-size: 1.5rem; }
+            .news-list { padding: 0 15px; margin-bottom: 2rem; }
+            .news-card .body { padding: 1rem; }
+            .news-card h3 { font-size: 1.1rem; }
+            .news-card .excerpt { font-size: 0.9rem; }
+            .news-card .meta { font-size: 0.75rem; }
+            .no-items { padding: 1.5rem; margin: 1rem auto; }
+        }
     </style>
 </head>
 <body>
@@ -40,7 +48,7 @@ $newsList = $newsModel->getAll();
                     <li><a href="jobs.php">Punët</a></li>
                     <li><a href="news.php" class="active">Lajme</a></li>
                     <li><a href="contact.php">Kontakt</a></li>
-                    <?php if (isset($_SESSION['user'])): ?><li><a href="admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
+                    <?php if (isset($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') === 'admin'): ?><li><a href="admin/dashboard.php">Menaxhimi</a></li><?php endif; ?>
                 </ul>
             </nav>
             <div class="buttons">
@@ -62,7 +70,13 @@ $newsList = $newsModel->getAll();
     <a href="jobs.php">Punët</a>
     <a href="news.php">Lajme</a>
     <a href="contact.php">Kontakt</a>
-    <?php if (isset($_SESSION['user'])): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
+    <?php if (isset($_SESSION['user'])): ?>
+        <?php if (($_SESSION['user']['role'] ?? '') === 'admin'): ?><a href="admin/dashboard.php">Menaxhimi</a><?php endif; ?>
+        <a href="auth/logout.php">Dil</a>
+    <?php else: ?>
+        <a href="auth/loginform.php">Kyçu</a>
+        <a href="auth/registerform.php">Regjistrohu</a>
+    <?php endif; ?>
 </div>
 <main>
     <h1 class="page-title">Lajmet më të reja</h1>
@@ -90,10 +104,26 @@ $newsList = $newsModel->getAll();
 </main>
 <footer>
     <div class="elementet">
-        <div class="object"><i class='bxr bx-book-open'></i><h4>Kërko miliona vende pune</h4><p>Kërko miliona vende pune dhe realizo ëndrrat profesionale.</p></div>
-        <div class="object"><i class='bxr bx-people-diversity'></i><h4>Ekipe të mrekullueshme</h4><p>Rritu profesionalisht me ekipe të mrekullueshme.</p></div>
-        <div class="object"><i class='bxr bx-buildings'></i><h4>Mjedis i mirë pune</h4><p>Shijo një mjedis të mirë pune dhe atmosferë.</p></div>
-        <div class="object"><i class='bxr bx-biceps'></i><h4>Çdo ditë më i fortë</h4><p>Forcohu çdo ditë dhe tejkalo çdo pengesë.</p></div>
+        <div class="object">
+            <i class='bxr bx-book-open'></i>
+            <div class="fjalia1"><h4>Kërko miliona vende pune</h4></div>
+            <div><p>Kërko miliona vende pune dhe realizo ëndrrat profesionale.</p></div>
+        </div>
+        <div class="object">
+            <i class='bxr bx-people-diversity'></i>
+            <div class="fjalia1"><h4>Ekipe të mrekullueshme</h4></div>
+            <div><p>Rritu profesionalisht me ekipe të mrekullueshme.</p></div>
+        </div>
+        <div class="object">
+            <i class='bxr bx-buildings'></i>
+            <div class="fjalia1"><h4>Mjedis i mirë pune</h4></div>
+            <div><p>Shijo një mjedis të mirë pune dhe atmosferë.</p></div>
+        </div>
+        <div class="object">
+            <i class='bxr bx-biceps'></i>
+            <div class="fjalia1"><h4>Çdo ditë më i fortë</h4></div>
+            <div><p>Forcohu çdo ditë dhe tejkalo çdo pengesë.</p></div>
+        </div>
     </div>
     <div class="copyright">© 2025 VLERÉ. Të gjitha të drejtat e rezervuara.</div>
 </footer>
