@@ -91,29 +91,6 @@ Projekti/
 
 ---
 
-## Si të ngarkosh pamje (screenshot) për çdo view
 
-Në këtë projekt, “pamjet” janë faqet e aplikacionit (kryefaqja, lajme, produkte, kontakt, etj.). Mund të përdorësh dy qasje:
-
-### 1. Ngarkimi përmes panelit të adminit (imazhe që shfaqen në faqe)
-
-- **Lajme**  
-  - Hyr si admin → Dashboard → “Shto lajm”.  
-  - Fus titull dhe tekst, pastaj në formë zgjidh **Imazh**: JPG/PNG/GIF, max 5MB.  
-  - Imazhet ruhen në `uploads/news/` dhe shfaqen në faqen e lajmeve.
-
-- **Produkte**  
-  - Dashboard → “Shto produkt”.  
-  - Titull, përshkrim dhe **Imazh**: JPG/PNG/GIF, max 5MB.  
-  - Ruhen në `uploads/products/` dhe shfaqen në faqen e produkteve.
-
-- **Slider (kryefaqja)**  
-  - Imazhet e slider-it lexohen nga tabela `slider` dhe nga dosja `uploads/slider/`.  
-  - Nëse në projekt nuk ka formë “Shto slider” në admin, duhet të shtosh rreshta në tabelën `slider` (titull, subtitle, emri i skedarit të imazhit, `sort_order`, `active`) dhe të vendosësh vetë skedarët e imazheve në `uploads/slider/` (emri i skedarit në DB duhet të përputhet me emrin në server).
-
-Kufizime të përbashkëta: vetëm JPG/PNG/GIF; madhësia maksimale 5MB; emri i skedarit pastrohet dhe shtohet timestamp për të shmangur mbishkrimet.
-
-### 2. Screenshot-e për dokumentacion (README / raporte)
-
-`![Kryefaqja](docs/screenshots/01-kryefaqja.png)`
+![screenshot](docs/01-kryefaqja.png)
 
