@@ -3,14 +3,14 @@ require_once __DIR__ . "/Database.php";
 
 class News extends Database {
 
-    public function add($title, $body, $image, $file, $createdBy) {
-        $stmt = $this->conn->prepare(
+    public function add($title, $body, $image, $file, $createdBy) { // CREATE NEWS, INSERT INTO NEWS TABLE
+        $stmt = $this->conn->prepare( //prepare command for insert into news table 
             "INSERT INTO news(title, body, image, file, created_by) VALUES (?, ?, ?, ?, ?)"
         );
         return $stmt->execute([$title, $body, $image ?: null, $file ?: null, $createdBy]);
     }
 
-    public function update($id, $title, $body, $image, $file, $updatedBy) {
+    public function update($id, $title, $body, $image, $file, $updatedBy) { // update news 
         $stmt = $this->conn->prepare(
             "UPDATE news SET title = ?, body = ?, image = ?, file = ?, updated_by = ?, updated_at = NOW() WHERE id = ?"
         );
@@ -31,7 +31,7 @@ class News extends Database {
         }
     }
 
-    public function getAll() {
+    public function getAll() { // read news from news table
         try {
             $stmt = $this->conn->query(
                 "SELECT n.*, u1.name AS created_by_name, u2.name AS updated_by_name
@@ -46,7 +46,7 @@ class News extends Database {
         }
     }
 
-    public function delete($id) {
+    public function delete($id) { // delete
         $stmt = $this->conn->prepare("DELETE FROM news WHERE id = ?");
         return $stmt->execute([$id]);
     }

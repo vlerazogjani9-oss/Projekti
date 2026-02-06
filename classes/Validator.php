@@ -2,7 +2,7 @@
 
 class Validator
 {
-    private $errors = [];
+    private $errors = []; // ENCAPSULATION OF THE ERRORS
 
     public function validateRegister($data) {
         $this->errors = [];

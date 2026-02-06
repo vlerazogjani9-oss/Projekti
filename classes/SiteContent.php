@@ -3,7 +3,7 @@ require_once __DIR__ . "/Database.php";
 
 class SiteContent extends Database {
 
-    public function get($key) {
+    public function get($key) { // read only
         try {
             $stmt = $this->conn->prepare("SELECT content_value FROM site_content WHERE content_key = ?");
             $stmt->execute([$key]);

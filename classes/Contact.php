@@ -3,14 +3,14 @@ require_once __DIR__ . "/Database.php";
 
 class Contact extends Database {
 
-    public function save($name, $email, $message) {
+    public function save($name, $email, $message) { // CREATE CONTACT MESSAGE, INSERT INTO CONTACT_MESSAGES TABLE
         $stmt = $this->conn->prepare(
             "INSERT INTO contact_messages(name, email, message) VALUES (?, ?, ?)"
         );
         return $stmt->execute([$name, $email, $message]);
     }
 
-    public function getAll() {
+    public function getAll() { // READ CONTACT MESSAGES FROM CONTACT_MESSAGES TABLE
         try {
             $stmt = $this->conn->query("SELECT * FROM contact_messages ORDER BY created_at DESC");
             return $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];

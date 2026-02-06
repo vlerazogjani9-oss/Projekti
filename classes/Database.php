@@ -1,6 +1,6 @@
 <?php
 class Database {
-    protected $conn;
+    protected $conn; // ENCAPSULATION OF THE DATABASE CONNECTION
 
     public function __construct(){
         $this->conn = new PDO(

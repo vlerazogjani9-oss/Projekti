@@ -3,14 +3,14 @@ require_once __DIR__ . "/Database.php";
 
 class Product extends Database {
 
-    public function add($title, $description, $image, $file, $createdBy) {
-        $stmt = $this->conn->prepare(
+    public function add($title, $description, $image, $file, $createdBy) { // CREATE PRODUCT, INSERT INTO NEWS TABLE
+        $stmt = $this->conn->prepare( // PREPARE COMMAND FOR INSERT INTO PRODUCTS TABLE
             "INSERT INTO products(title, description, image, file, created_by) VALUES (?, ?, ?, ?, ?)"
         );
         return $stmt->execute([$title, $description, $image ?: null, $file ?: null, $createdBy]);
     }
 
-    public function update($id, $title, $description, $image, $file, $updatedBy) {
+    public function update($id, $title, $description, $image, $file, $updatedBy) { // UPDATE PRODUCT, UPDATE PRODUCT TABLE
         $stmt = $this->conn->prepare(
             "UPDATE products SET title = ?, description = ?, image = ?, file = ?, updated_by = ?, updated_at = NOW() WHERE id = ?"
         );
@@ -31,7 +31,7 @@ class Product extends Database {
         }
     }
 
-    public function getAll() {
+    public function getAll() { // READ PRODUCTS, SELECT FROM PRODUCT TABLE
         try {
             $stmt = $this->conn->query(
                 "SELECT p.*, u1.name AS created_by_name, u2.name AS updated_by_name
@@ -46,8 +46,8 @@ class Product extends Database {
         }
     }
 
-    public function delete($id) {
+    public function delete($id) { // DELETE PRODUCT 
         $stmt = $this->conn->prepare("DELETE FROM products WHERE id = ?");
-        return $stmt->execute([$id]);
+        return $stmt->execute([$id]); 
     }
 }

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/Database.php";
 
-class TeamMember extends Database {
+class TeamMember extends Database { // read only
 
     public function getAll() {
         try {

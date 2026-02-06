@@ -4,7 +4,7 @@ require_once __DIR__ . "/Database.php";
 class Job extends Database {
 
     /** @var string|null Last PDO error message */
-    protected $lastError = null;
+    protected $lastError = null; // ENCAPSULATION OF THE LAST PDO ERROR MESSAGE
 
     public function getLastError() {
         return $this->lastError;

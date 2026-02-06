@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . "/Database.php";
 
-class User extends Database {
+class User extends Database { // 
 
-    public function register($name, $email, $password) {
+    public function register($name, $email, $password) { // REGISTER USER, CREATE USERS
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $this->conn->prepare(
             "INSERT INTO users(name, email, password, role) VALUES (?, ?, ?, 'user')"
