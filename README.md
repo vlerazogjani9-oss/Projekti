@@ -1,65 +1,69 @@
 # PUNA IME – Projekti
 
-Aplikacion web në PHP për platformën e punës “Puna Ime”: kryefaqe, lajme, produkte, oferta punësh, kontakt dhe panel administrimi.
-
+Puna Ime është një aplikacion web i zhvilluar në PHP, që shërben si platformë për shpallje punësh. Aplikacioni përfshin kryefaqe publike, lajme, produkte, oferta pune, formë kontakti dhe një panel administrimi për menaxhimin e përmbajtjes.
 ---
 
 ## Struktura e projektit
 
 Projekti/
-├── admin/ # Panel administrimi (kërkon hyrje si admin)
-│ ├── dashboard.php # Paneli kryesor – mesazhe, lajme, produkte, punë
-│ ├── add_news.php # Shtim lajm (imazh + PDF)
-│ ├── edit_news.php # Ndryshim lajm
-│ ├── delete_news.php # Fshirje lajm
-│ ├── add_product.php # Shtim produkt (imazh + PDF)
-│ ├── edit_product.php # Ndryshim produkt
-│ ├── delete_product.php # Fshirje produkt
-│ ├── add_job.php # Shtim ofertë pune
-│ ├── edit_job.php # Ndryshim ofertë
-│ └── delete_job.php # Fshirje ofertë
+├── admin/                    # Panel administrimi (akses vetëm për admin)
+│   ├── dashboard.php         # Paneli kryesor (mesazhe, lajme, produkte, punë)
+│   ├── add_news.php          # Shtim lajmi (imazh + PDF)
+│   ├── edit_news.php         # Ndryshim lajmi
+│   ├── delete_news.php       # Fshirje lajmi
+│   ├── add_product.php       # Shtim produkti (imazh + PDF)
+│   ├── edit_product.php     # Ndryshim produkti
+│   ├── delete_product.php   # Fshirje produkti
+│   ├── add_job.php           # Shtim ofertë pune
+│   ├── edit_job.php          # Ndryshim ofertë pune
+│   └── delete_job.php        # Fshirje ofertë pune
+│
 ├── assets/
-│ ├── css/ # Stile (faqja1.css, about.css, contact.css, admin.css, loginform.css)
-│ ├── images/ # Imazhe statike (logo, foto ekipi, etj.)
-│ └── js/ # JavaScript (p.sh. slider, forma)
+│   ├── css/                  # Stilet CSS
+│   ├── images/               # Imazhe statike (logo, foto, etj.)
+│   └── js/                   # JavaScript (slider, validime, etj.)
+│
 ├── auth/
-│ ├── loginform.php # Faqja e hyrjes
-│ ├── registerform.php # Faqja e regjistrimit
-│ └── logout.php # Dalje nga llogaria
-├── classes/ # Modele dhe logjikë
-│ ├── Database.php # Lidhja me MySQL
-│ ├── User.php # Përdoruesit
-│ ├── Contact.php # Mesazhet e kontaktit
-│ ├── News.php # Lajmet
-│ ├── Product.php # Produktet
-│ ├── Job.php # Ofertat e punës
-│ ├── Slider.php # Slider-i në kryefaqe
-│ ├── SiteContent.php # Përmbajtje teksti (slogan, about, etj.)
-│ ├── TeamMember.php # Anëtarët e ekipit (About)
-│ └── Validator.php # Validimi i të dhënave
+│   ├── loginform.php         # Forma e hyrjes
+│   ├── registerform.php      # Forma e regjistrimit
+│   └── logout.php            # Dalje nga llogaria
+│
+├── classes/                  # Modele dhe logjikë e aplikacionit
+│   ├── Database.php          # Lidhja me MySQL (PDO)
+│   ├── User.php              # Menaxhimi i përdoruesve
+│   ├── Contact.php           # Mesazhet e kontaktit
+│   ├── News.php              # Lajmet
+│   ├── Product.php           # Produktet
+│   ├── Job.php               # Ofertat e punës
+│   ├── Slider.php            # Slider-i i kryefaqes
+│   ├── SiteContent.php       # Tekstet statike (slogan, about, etj.)
+│   ├── TeamMember.php        # Anëtarët e ekipit
+│   └── Validator.php         # Validimi i të dhënave
+│
 ├── config/
-│ └── database.php # Konfigurimi i bazës së të dhënave (host, db, user, fjalëkalim)
+│   └── database.php          # Konfigurimi i bazës së të dhënave
+│
 ├── includes/
-│ └── auth_check.php # Kontrollon nëse përdoruesi është i futur (për admin)
-├── uploads/ # Skedarët e ngarkuar nga përdoruesi/admin
-│ ├── news/ # Imazhet dhe PDF për lajmet
-│ ├── products/ # Imazhet dhe PDF për produktet
-│ └── slider/ # Imazhet e slider-it në kryefaqe
-├── index.php # Kryefaqja (sllajde, oferta punësh, kërkim)
-├── about.php # Rreth nesh
-├── contact.php # Forma e kontaktit
-├── news.php # Lista e lajmeve
-├── products.php # Lista e produkteve
-├── jobs.php # Faqja e punëve
-├── schema.sql # Skema e bazës së të dhënave (tabela + seed)
-└── hash.php # Skript ndihmës për hash të fjalëkalimeve (nëse ekziston)
-
-
+│   └── auth_check.php        # Kontroll i autentifikimit për admin
+│
+├── uploads/                  # Skedarë të ngarkuar
+│   ├── news/                 # Imazhe & PDF për lajme
+│   ├── products/             # Imazhe & PDF për produkte
+│   └── slider/               # Imazhe për slider
+│
+├── index.php                 # Kryefaqja
+├── about.php                 # Rreth nesh
+├── contact.php               # Forma e kontaktit
+├── news.php                  # Lista e lajmeve
+├── products.php              # Lista e produkteve
+├── jobs.php                  # Lista e ofertave të punës
+│
+├── schema.sql                # Skema e bazës së të dhënave
+└── hash.php                  # Skript ndihmës për hash të fjalëkalimeve
 
 
 ---
 
-## Dokumentacion
 
 ### Kërkesat
 - PHP 7.4+ (me shtesë: PDO MySQL, `finfo` për MIME)
@@ -85,12 +89,60 @@ Projekti/
 | Regjistrim  | `auth/registerform.php`| Regjistrim i përdoruesve          |
 | Admin       | `admin/dashboard.php`  | Paneli (pas login si admin)      |
 
-### Bazë e të dhënave
-- **Tabela:** `users`, `contact_messages`, `products`, `news`, `slider`, `site_content`, `team_members`, `jobs`.
-- Përshkrimi i plotë i tabelave dhe lidhjeve gjendet në `schema.sql`.
+### Baza e të dhënave
+-Tabela kryesore:
 
+-users
+-contact_messages
+-products
+-news
+-slider
+-site_content
+-team_members
+-jobs
+
+-Përshkrimi i plotë i tabelave dhe relacioneve gjendet në schema.sql.
 ---
 
+Kryefaqja / Homepage
 
 ![screenshot](docs/01-kryefaqja.png)
+
+
+Rresh nesh / About Us
+
+![screenshot](docs/02-rresh-nesh.png)
+
+
+Punët e shtuara / Jobs
+
+![screenshot](docs/03-punes.png)
+
+
+Lajmet e fundit / News
+
+![screenshot](docs/04-lajme.png)
+
+
+Kontakti / Contact Us
+
+![screenshot](docs/05-contact.png)
+
+
+Kyçu / Log in
+
+![screenshot](docs/06-kyqu.png)
+
+
+Regjistrohu / Register
+
+![screenshot](docs/07-regjistrohu.png)
+
+
+Faqja Menaxhuese / Dashboard
+
+![screenshot](docs/08-dashboard.png)
+
+
+
 
