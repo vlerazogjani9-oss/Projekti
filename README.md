@@ -111,12 +111,12 @@ Kryefaqja / Homepage
 
 Rresh nesh / About Us
 
-![screenshot](docs/02-rresh-nesh.png)
+![screenshot](docs/02-rreth-nesh.png)
 
 
 Punët e shtuara / Jobs
 
-![screenshot](docs/03-punes.png)
+![screenshot](docs/03-punet.png)
 
 
 Lajmet e fundit / News
