@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . "/classes/Job.php";
+require_once __DIR__ . "/config/job_privacy.php";
 
 $jobModel = new Job();
 $jobs = $jobModel->getAll();
@@ -68,7 +69,7 @@ $jobs = $jobModel->getAll();
             <p class="no-items">Nuk ka punë të shtuara ende. Kontrolloni më vonë.</p>
         <?php else: ?>
             <?php foreach ($jobs as $job): ?>
-                <?php
+                <?php $job = getJobDisplay($job);
                 $initials = '';
                 $words = preg_split('/\s+/', trim($job['title']), 2);
                 if (count($words) >= 2) {

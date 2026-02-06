@@ -3,6 +3,7 @@ session_start();
 require_once __DIR__ . "/classes/Slider.php";
 require_once __DIR__ . "/classes/Job.php";
 require_once __DIR__ . "/classes/SiteContent.php";
+require_once __DIR__ . "/config/job_privacy.php";
 
 $sliderModel = new Slider();
 $jobModel = new Job();
@@ -172,7 +173,7 @@ $quoteText = $siteContent->get('home_quote') ?: 'Gjej punën tënde të ëndrrav
       <p style="padding:1rem;color:#64748b;"><?= ($searchPosition !== '' || $searchCategory !== '' || $searchLocation !== '') ? 'Nuk u gjet asnjë punë sipas kriterave. Provoni kërkimin tjetër.' : 'Nuk ka punë të shtuara ende. Kontrolloni më vonë.' ?></p>
     <?php else: ?>
       <?php foreach ($jobs as $job): ?>
-        <?php
+        <?php $job = getJobDisplay($job);
         $initials = '';
         $words = preg_split('/\s+/', trim($job['title']), 2);
         if (count($words) >= 2) {

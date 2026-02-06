@@ -143,10 +143,10 @@ INSERT IGNORE INTO team_members (name, image, sort_order) VALUES
   ('Elsa Canolli', '93435.jpg', 2),
   ('Vesa Kadriu', '1328.jpg', 3);
 
--- Seed: sample jobs for Home (optional)
+-- Seed: sample jobs for Home (optional) – fictitious companies and locations
 INSERT IGNORE INTO jobs (title, company, location, sort_order) VALUES
-  ('Frontend Development', 'BrandingX', 'Pejton, Prishtinë', 0),
-  ('Full Stack Developer', 'Raiffeisen Tech Kosovo', 'Dardani, Prishtinë', 1),
+  ('Frontend Development', 'Studio Alpha', 'Qendra, Prishtinë', 0),
+  ('Full Stack Developer', 'Tech Solutions Kosovo', 'Tophane, Prishtinë', 1),
   ('Open Source Interactive Developer', 'KEN CREATIVE', 'Veterrnik, Prishtinë', 2),
   ('Menaxher Marketingu', 'Creative Marketing Agency', 'Bregu i Diellit, Prishtinë', 3),
   ('Dizajner Grafik', 'Tactica', 'Tophane, Prishtinë', 4),

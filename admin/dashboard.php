@@ -5,6 +5,7 @@ require_once __DIR__ . '/../classes/Contact.php';
 require_once __DIR__ . '/../classes/News.php';
 require_once __DIR__ . '/../classes/Product.php';
 require_once __DIR__ . '/../classes/Job.php';
+require_once __DIR__ . '/../config/job_privacy.php';
 
 $contactModel = new Contact();
 $newsModel = new News();
@@ -128,6 +129,7 @@ $jobs = $jobModel->getAll();
                 </thead>
                 <tbody>
                     <?php foreach ($jobs as $j): ?>
+                        <?php $j = getJobDisplay($j); ?>
                         <tr>
                             <td><?= htmlspecialchars($j['title']) ?></td>
                             <td><?= htmlspecialchars($j['company']) ?></td>
